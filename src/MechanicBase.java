@@ -4,4 +4,8 @@ public class MechanicBase {
 //Walking
 //Sprinting
 //Double Jumping
+	boolean touchingFloor;
+	void toggle() {
+		
+	}
 }

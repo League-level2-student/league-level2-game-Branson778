@@ -4,4 +4,8 @@ public class Platform_Object {
 //Jump Through (Semi-Solid) Platforms
 //Falling Platforms
 //Arrow Trap
+	int x;
+	int y;
+	int width;
+	int height;
 }

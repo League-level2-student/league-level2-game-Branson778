@@ -17,5 +17,7 @@ ppr.setup();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addKeyListener(gamePanel);
+		frame.setTitle("Precarious Platforms");
+		
 	}
 }
