@@ -38,16 +38,20 @@ public class Player extends MovingObject {
 	 x+=speed;
 	 System.out.println("walkRight");
  }
-  public void jump() {
+  public void jump(Graphics g, int velocity) {
 	  System.out.println("jump");
-	  for (int i = 0; i < 7; i++) {
-		y-=jump;
-		System.out.println("jumpUp"+i);
-	}
-	  for (int i = 0; i < 7; i++) {
-		y+=jump;
-		System.out.println("jumpDown"+i);
-	}
+	//  for (int i = 0; i < 7; i++) {
+	//	y-=jump;
+		//draw(g);
+	//	System.out.println("jumpUp"+i);
+//	}
+	//  for (int i = 0; i < 7; i++) {
+	//	y+=jump;
+		//draw(g);
+		//System.out.println("jumpDown"+i);
+//	}
+	  y=y-velocity;
+	  draw(g);
   }
   public void duck() {
 	  height = 50;

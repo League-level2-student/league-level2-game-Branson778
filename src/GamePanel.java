@@ -9,9 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
-Player player = new Player(0, 0, 15, 15);
-MovingObjectManager mobm = new MovingObjectManager();
+	MovingObjectManager mobm = new MovingObjectManager();
+	Player player = mobm.player2;
 Timer frameDraw;
+boolean ifJump = false;
+int velocity = 26;
 GamePanel(){
 	frameDraw = new Timer(1000/60, this);
 	frameDraw.start();
@@ -22,7 +24,8 @@ GamePanel(){
 		// TODO Auto-generated method stub
 		if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_SPACE || e.getKeyCode()==KeyEvent.VK_UP) {
 			System.out.println("JUMP");
-			mobm.player2.jump();
+			//mobm.player2.jump();
+			ifJump = true;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_CONTROL || e.getKeyCode()==KeyEvent.VK_DOWN) {
 			System.out.println("DUCK");
@@ -43,6 +46,14 @@ GamePanel(){
 	f.setColor(Color.GRAY);
 	f.fillRect(0, 0, 800, 500);
 		mobm.draw(f);
+		if(ifJump==true) {
+			player.jump(f,velocity);
+			velocity = velocity-2;
+			if(velocity<-26) {
+				ifJump = false;
+				velocity = 26;
+			}
+		}
 	}
 	void updateGame(){
 		
