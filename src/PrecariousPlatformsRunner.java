@@ -5,6 +5,7 @@ public class PrecariousPlatformsRunner {
 	public static final int WIDTH = 800;
 	public static final int LENGTH = 500;
 	GamePanel gamePanel = new GamePanel();
+	int debugInt;
 	
 	public static void main(String[] args) {
 PrecariousPlatformsRunner ppr = new PrecariousPlatformsRunner();

@@ -2,6 +2,7 @@
 public class MovingObject {
 //Arrow
 //Player
+	//int debugInt;
 	int x;
 	int y;
 	int width;

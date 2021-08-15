@@ -12,6 +12,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	MovingObjectManager mobm = new MovingObjectManager();
 	Player player = mobm.player2;
 Timer frameDraw;
+int debugInt;
 boolean ifJump = false;
 int velocity = 26;
 GamePanel(){

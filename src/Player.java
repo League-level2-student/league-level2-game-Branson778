@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 
 public class Player extends MovingObject {
  int jump = 7;
+ int debugInt;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	

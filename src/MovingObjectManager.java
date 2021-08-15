@@ -3,6 +3,7 @@ import java.awt.Graphics;
 
 public class MovingObjectManager {
 Player player2 = new Player(50, 400, 50, 50);
+int debugInt;
 void  draw (Graphics h) {
 	player2.draw(h);
 	//h.setColor(Color.RED);
