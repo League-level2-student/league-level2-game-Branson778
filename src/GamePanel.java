@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -15,9 +17,15 @@ Timer frameDraw;
 int debugInt;
 boolean ifJump = false;
 int velocity = 26;
+public static BufferedImage image;
+public static boolean needImage = true;
+public static boolean gotImage = false;	
 GamePanel(){
 	frameDraw = new Timer(1000/60, this);
 	frameDraw.start();
+	if(needImage) {
+		loadImage("gameBackground.png");
+	}
 }
 	@Override
 	
@@ -30,6 +38,10 @@ GamePanel(){
 		}
 		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_CONTROL || e.getKeyCode()==KeyEvent.VK_DOWN) {
 			System.out.println("DUCK");
+			mobm.player2.duck();
+			//mobm.player2.isDucking=true;
+			//mobm.player2.previousY=mobm.player2.y;
+			//mobm.player2.y+=25;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_A || e.getKeyCode()==KeyEvent.VK_LEFT) {
 			System.out.println("MOVE LEFT");
@@ -44,9 +56,15 @@ GamePanel(){
 		}
 	}
 	void drawGame(Graphics f){
-	f.setColor(Color.GRAY);
-	f.fillRect(0, 0, 800, 500);
-		mobm.draw(f);
+	//f.setColor(Color.GRAY);
+	//f.fillRect(0, 0, 800, 500);
+	if (gotImage) {
+		f.drawImage(image, 0, 0, 800, 500, null);
+	} else {
+		f.setColor(Color.GRAY);
+		f.fillRect(0, 0, 800, 500);
+	}
+	mobm.draw(f);
 		if(ifJump==true) {
 			player.jump(f,velocity);
 			velocity = velocity-2;
@@ -57,7 +75,7 @@ GamePanel(){
 		}
 	}
 	void updateGame(){
-		
+		mobm.update();
 	}
 	
 	@Override
@@ -67,9 +85,14 @@ GamePanel(){
 	
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_CONTROL || e.getKeyCode()==KeyEvent.VK_DOWN) {
+			System.out.println("DUCK RELSEASED");
+			mobm.player2.isDucking=false;
+			//mobm.player2.y=mobm.player2.previousY;
+			mobm.player2.targetHeight=50;
+		}
 	}
 
 	@Override
@@ -81,10 +104,22 @@ GamePanel(){
 	@Override
 	public void actionPerformed(ActionEvent frameUpdate) {
 		// TODO Auto-generated method stub
+		updateGame();
 		repaint();
 	}
 	public static void main(String[] args) {
 		
+	}
+	void loadImage(String imageFile) {
+	    if (needImage) {
+	        try {
+	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+		    gotImage = true;
+	        } catch (Exception e) {
+	            
+	        }
+	        needImage = false;
+	    }
 	}
 
 }

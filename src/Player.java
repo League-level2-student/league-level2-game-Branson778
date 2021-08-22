@@ -7,9 +7,12 @@ import javax.imageio.ImageIO;
 public class Player extends MovingObject {
  int jump = 7;
  int debugInt;
+ int previousY;
+ int targetHeight = 50;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
+	public boolean isDucking = false;
 	Player(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
@@ -55,20 +58,34 @@ public class Player extends MovingObject {
 	  draw(g);
   }
   public void duck() {
-	  height = 50;
-	  height = 45;
-	  height = 40;
-	  height = 35;
-	  height = 30;
-	  height = 25;
-	  height = 30;
-	  height = 35;
-	  height = 40;
-	  height = 45;
-	  height = 50;
+ if(isDucking==true) {
+	 
+ }
+ if(isDucking==false) {
+	 isDucking=true;
+	 previousY=y;
+	// y+=25;
+	 targetHeight = 25;
+ }
   }
 public void update() {
-	
+	//System.out.println("update");
+	//if(isDucking==true) {
+		//height = 25;
+	//}
+	//else{
+		//height = 50;
+	//}
+	if(height<targetHeight) {
+		height++;
+		int heightDif=50-height;
+		y=previousY+heightDif;
+	}
+	if(height>targetHeight) {
+		height--;
+		int heightDif=50+height;
+		y=previousY-heightDif;
+	}
 	
 }
 void loadImage(String imageFile) {
