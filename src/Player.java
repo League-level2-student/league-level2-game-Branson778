@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 public class Player extends MovingObject {
  int jump = 7;
@@ -10,7 +11,11 @@ public class Player extends MovingObject {
  int previousY;
  int targetHeight = 50;
  int velocity = 26;
+ int stamina = 50;
  public boolean isJumping = false;
+ public boolean goingLeft = false;
+ public boolean goingRight = false;
+ public boolean isSprinting = false;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
@@ -21,7 +26,7 @@ public class Player extends MovingObject {
 		if(needImage) {
 			loadImage("player.png");
 		}
-		speed = 12;
+		speed = 4;
 		//x=50;
 		//y=50;
 		//width=50;
@@ -36,12 +41,14 @@ public class Player extends MovingObject {
 		g.fillRect(x, y, width, height);
 		}
 	}
- public void walkLeft() {
-	 x-=speed;
+ public void walkLeft(boolean left) {
+	 goingLeft=left;
+	// x-=speed;
 	 System.out.println("walkLeft");
  }
- public void walkRight() {
-	 x+=speed;
+ public void walkRight(boolean right) {
+	 goingRight = right;
+	 //x+=speed;
 	 System.out.println("walkRight");
  }
   public void jump(int velocity) {
@@ -104,7 +111,28 @@ public void update() {
 			velocity = 26;
 		}
 	}
-	
+	if(isSprinting==true && stamina>0) {
+		speed = 7;
+		stamina--;
+	}
+	else {
+		speed = 4;
+		if(stamina<50) {
+			stamina++;
+		}
+	}
+	if(isDucking==true) {
+		speed-=2; 
+	}
+	//if(isSprinting==true && isDucking==true) {
+	//	speed = 5;
+	//}
+	if(goingLeft==true) {
+		x-=speed;
+	}
+	if(goingRight==true) {
+		x+=speed;
+	}
 }
 void loadImage(String imageFile) {
     if (needImage) {

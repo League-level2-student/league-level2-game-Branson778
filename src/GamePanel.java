@@ -45,14 +45,16 @@ GamePanel(){
 		}
 		if(e.getKeyCode()==KeyEvent.VK_A || e.getKeyCode()==KeyEvent.VK_LEFT) {
 			System.out.println("MOVE LEFT");
-			mobm.player2.walkLeft();
+			mobm.player2.walkLeft(true);
 		}
 		if(e.getKeyCode()==KeyEvent.VK_D || e.getKeyCode()==KeyEvent.VK_RIGHT) {
 			System.out.println("MOVE RIGHT");
-			mobm.player2.walkRight();
+			mobm.player2.walkRight(true);
 		}
 		if(e.getKeyCode()==KeyEvent.VK_SHIFT || e.getKeyCode()==KeyEvent.VK_E) {
-			System.out.println("TOGGLE SPRINT");
+			System.out.println("TOGGLE SPRINT ON");
+			//mobm.player2.speed=7;
+			mobm.player2.isSprinting=true;
 		}
 	}
 	void drawGame(Graphics f){
@@ -85,6 +87,19 @@ GamePanel(){
 			//mobm.player2.isDucking=false;
 			//unmobm.player2.y=mobm.player2.previousY;
 			//mobm.player2.targetHeight=50;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_SHIFT || e.getKeyCode()==KeyEvent.VK_E) {
+			System.out.println("TOGGLE SPRINT OFF");
+			//mobm.player2.speed=4;
+			mobm.player2.isSprinting = false;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_A || e.getKeyCode()==KeyEvent.VK_LEFT) {
+			System.out.println("MOVE LEFT");
+			mobm.player2.walkLeft(false);
+		}
+		if(e.getKeyCode()==KeyEvent.VK_D || e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			System.out.println("MOVE RIGHT");
+			mobm.player2.walkRight(false);
 		}
 	}
 
