@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 
 public class PrecariousPlatformsRunner {
+	//Now an infinite runner instead of an infinite platformer.
 	JFrame frame = new JFrame();
 	public static final int WIDTH = 800;
 	public static final int LENGTH = 500;
