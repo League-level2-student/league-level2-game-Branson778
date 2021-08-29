@@ -15,8 +15,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Player player = mobm.player2;
 Timer frameDraw;
 int debugInt;
-boolean ifJump = false;
-int velocity = 26;
+//boolean ifJump = false;
+//int velocity = 26;
 public static BufferedImage image;
 public static boolean needImage = true;
 public static boolean gotImage = false;	
@@ -34,11 +34,11 @@ GamePanel(){
 		if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_SPACE || e.getKeyCode()==KeyEvent.VK_UP) {
 			System.out.println("JUMP");
 			//mobm.player2.jump();
-			ifJump = true;
+			mobm.player2.isJumping = true;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_CONTROL || e.getKeyCode()==KeyEvent.VK_DOWN) {
 			System.out.println("DUCK");
-			mobm.player2.duck();
+			mobm.player2.duck(true);
 			//mobm.player2.isDucking=true;
 			//mobm.player2.previousY=mobm.player2.y;
 			//mobm.player2.y+=25;
@@ -65,14 +65,6 @@ GamePanel(){
 		f.fillRect(0, 0, 800, 500);
 	}
 	mobm.draw(f);
-		if(ifJump==true) {
-			player.jump(f,velocity);
-			velocity = velocity-2;
-			if(velocity<-26) {
-				ifJump = false;
-				velocity = 26;
-			}
-		}
 	}
 	void updateGame(){
 		mobm.update();
@@ -89,9 +81,10 @@ GamePanel(){
 		// TODO Auto-generated method stub
 		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_CONTROL || e.getKeyCode()==KeyEvent.VK_DOWN) {
 			System.out.println("DUCK RELSEASED");
-			mobm.player2.isDucking=false;
-			//mobm.player2.y=mobm.player2.previousY;
-			mobm.player2.targetHeight=50;
+			mobm.player2.duck(false);
+			//mobm.player2.isDucking=false;
+			//unmobm.player2.y=mobm.player2.previousY;
+			//mobm.player2.targetHeight=50;
 		}
 	}
 

@@ -9,6 +9,8 @@ public class Player extends MovingObject {
  int debugInt;
  int previousY;
  int targetHeight = 50;
+ int velocity = 26;
+ public boolean isJumping = false;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
@@ -20,10 +22,10 @@ public class Player extends MovingObject {
 			loadImage("player.png");
 		}
 		speed = 12;
-		x=50;
-		y=50;
-		width=50;
-		height=50;
+		//x=50;
+		//y=50;
+		//width=50;
+		//height=50;
 	}
 	void draw (Graphics g) {
 		if(gotImage) {
@@ -42,7 +44,7 @@ public class Player extends MovingObject {
 	 x+=speed;
 	 System.out.println("walkRight");
  }
-  public void jump(Graphics g, int velocity) {
+  public void jump(int velocity) {
 	  System.out.println("jump");
 	//  for (int i = 0; i < 7; i++) {
 	//	y-=jump;
@@ -55,17 +57,25 @@ public class Player extends MovingObject {
 		//System.out.println("jumpDown"+i);
 //	}
 	  y=y-velocity;
-	  draw(g);
+	 // draw(g);
   }
-  public void duck() {
- if(isDucking==true) {
-	 
+  public void duck(boolean shouldDuck) {
+ if(isDucking==true && shouldDuck==false && height==targetHeight && isJumping==false) {
+	 isDucking=false;
+	targetHeight=50; 
+	y=previousY;
  }
- if(isDucking==false) {
+ if(isDucking==false && shouldDuck==true && height==targetHeight && isJumping==false) {
 	 isDucking=true;
 	 previousY=y;
 	// y+=25;
 	 targetHeight = 25;
+ } 
+ if(isDucking==true && shouldDuck==true) {
+	 
+ }
+ if(isDucking==false && shouldDuck==false) {
+	 
  }
   }
 public void update() {
@@ -83,8 +93,16 @@ public void update() {
 	}
 	if(height>targetHeight) {
 		height--;
-		int heightDif=50+height;
+		int heightDif=height-50;
 		y=previousY-heightDif;
+	}
+	if(isJumping==true) {
+		jump(velocity);
+		velocity = velocity-2;
+		if(velocity<-26) {
+			isJumping = false;
+			velocity = 26;
+		}
 	}
 	
 }
