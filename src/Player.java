@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -11,7 +12,8 @@ public class Player extends MovingObject {
  int previousY;
  int targetHeight = 50;
  int velocity = 26;
- int stamina = 50;
+ double stamina = 200;
+ Font earlyStageStaminaFont = new Font("Arial", Font.PLAIN, 35);
  public boolean isJumping = false;
  public boolean goingLeft = false;
  public boolean goingRight = false;
@@ -40,6 +42,9 @@ public class Player extends MovingObject {
 		g.setColor(Color.RED);
 		g.fillRect(x, y, width, height);
 		}
+		g.setFont(earlyStageStaminaFont);
+		g.setColor(Color.YELLOW);
+		g.drawString(stamina+"", 27, 50);
 	}
  public void walkLeft(boolean left) {
 	 goingLeft=left;
@@ -112,13 +117,13 @@ public void update() {
 		}
 	}
 	if(isSprinting==true && stamina>0) {
-		speed = 7;
+		speed = 10;
 		stamina--;
 	}
 	else {
 		speed = 4;
-		if(stamina<50) {
-			stamina++;
+		if(stamina<200 && isSprinting == false) {
+			stamina+=0.5;
 		}
 	}
 	if(isDucking==true) {
