@@ -10,13 +10,16 @@ public class MovingObjectManager implements ActionListener {
 Player player2 = new Player(50, 400, 50, 50);
 ArrayList<Arrow> arrows = new ArrayList<Arrow>();
 ArrayList<ArrowDispenser> dispensers = new ArrayList<ArrowDispenser>();
-Timer arrowFire = new Timer(1250, this);
+Timer arrowFire = new Timer(1000, this);
 int debugInt;
 
 void  draw (Graphics h) {
 	player2.draw(h);
 	for (int i = 0; i < arrows.size(); i++) {
 		arrows.get(i).draw(h);
+	}
+	for (int i = 0; i < dispensers.size(); i++) {
+		dispensers.get(i).draw(h);
 	}
 	//h.setColor(Color.RED);
 	//h.fillRect(50, 50, 15, 15);
@@ -29,10 +32,14 @@ void update(){
 	for (int i = 0; i < arrows.size(); i++) {
 		arrows.get(i).update();
 	}
+	for (int i = 0; i < dispensers.size(); i++) {
+		//dispensers.get(i).update();
+	}
 }
 void startObjects() {
 	arrowFire.start();
-	dispensers.add(new ArrowDispenser(500,300,50,50));
+	dispensers.add(new ArrowDispenser(200,400,50,50,true));
+	dispensers.add(new ArrowDispenser(600,300,50,50,false));
 }
 void addArrow(Arrow arrow) {
 	arrows.add(arrow);
@@ -40,6 +47,8 @@ void addArrow(Arrow arrow) {
 @Override
 public void actionPerformed(ActionEvent arg0) {
 	// TODO Auto-generated method stub
-	addArrow(dispensers.get(0).getArrow());
+	for(int i = 0; i < dispensers.size(); i++) {
+	addArrow(dispensers.get(i).getArrow());
+	}
 }
 }

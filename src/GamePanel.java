@@ -26,6 +26,7 @@ GamePanel(){
 	if(needImage) {
 		loadImage("gameBackground.png");
 	}
+	mobm.startObjects();
 }
 	@Override
 	
