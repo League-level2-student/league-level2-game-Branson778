@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import javax.swing.Timer;
 
 public class MovingObjectManager implements ActionListener {
-static Player player2 = new Player(50, 400, 50, 50);
+static Player player2 = new Player(50, 350, 50, 50);
 ArrayList<Arrow> arrows = new ArrayList<Arrow>();
+static ArrayList<PlatformObject> platforms = new ArrayList<PlatformObject>();
 static ArrayList<ArrowDispenser> dispensers = new ArrayList<ArrowDispenser>();
 Timer arrowFire = new Timer(1000, this);
 int debugInt;
@@ -21,6 +22,9 @@ void  draw (Graphics h) {
 	}
 	for (int i = 0; i < dispensers.size(); i++) {
 		dispensers.get(i).draw(h);
+	}
+	for (int i = 0; i < platforms.size(); i++) {
+		platforms.get(i).draw(h);
 	}
 	//h.setColor(Color.RED);
 	//h.fillRect(50, 50, 15, 15);
@@ -38,11 +42,15 @@ void update(){
 	for (int i = 0; i < dispensers.size(); i++) {
 		//dispensers.get(i).update();
 	}
+	for (int i = 0; i < platforms.size(); i++) {
+		platforms.get(i).update();
+	}
 }
 void startObjects() {
 	arrowFire.start();
 	dispensers.add(new ArrowDispenser(200,400,50,50,true));
 	dispensers.add(new ArrowDispenser(600,300,50,50,false));
+	platforms.add(new PlatformObject(0, 450, 800, 199));
 }
 void addArrow(Arrow arrow) {
 	arrows.add(arrow);
@@ -68,6 +76,12 @@ public static boolean checkCollisionArea(Rectangle collider) {
 	for (int i = 0; i < dispensers.size(); i++) {
 		if(dispensers.get(i).collisionBox.intersects(collider)) {
 			System.out.println("collisionBox intersection/dispenser");
+			return true;
+		}
+	}
+	for (int i = 0; i < platforms.size(); i++) {
+		if(platforms.get(i).collisionBox.intersects(collider)) {
+			System.out.println("collisionBox intersection/platform");
 			return true;
 		}
 	}

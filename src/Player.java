@@ -12,7 +12,7 @@ public class Player extends MovingObject {
  int debugInt;
  int previousY;
  int targetHeight = 50;
- int velocity = 26;
+ int velocity = 0;
  double stamina = 200;
  Font earlyStageStaminaFont = new Font("Arial", Font.PLAIN, 35);
  public boolean isJumping = false;
@@ -57,6 +57,7 @@ public class Player extends MovingObject {
 	 //x+=speed;
 	 System.out.println("walkRight");
  }
+ /*
   public void jump(int velocity) {
 	  System.out.println("jump");
 	  int newY;
@@ -66,6 +67,7 @@ public class Player extends MovingObject {
 		 y=newY; 
 	  }
   }
+  */
   void applyGravity() {
 	  int newY;
 	  newY = y-velocity;
@@ -75,11 +77,11 @@ public class Player extends MovingObject {
 	  }
 	  else{
 		 velocity=0; 
+		 isJumping = false;
 	  }
 		velocity = velocity-2;
 		if(velocity<-26) {
-
-			velocity = 26;
+			velocity = -26;
 		}
   }
   public void duck(boolean shouldDuck) {

@@ -15,6 +15,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Player player = mobm.player2;
 Timer frameDraw;
 int debugInt;
+//PlatformObject po = new PlatformObject(0, 450, 800, 199);
 //boolean ifJump = false;
 //int velocity = 26;
 public static BufferedImage image;
@@ -36,6 +37,7 @@ GamePanel(){
 			System.out.println("JUMP");
 			//mobm.player2.jump();
 			mobm.player2.isJumping = true;
+			mobm.player2.velocity = 26;
 		}
 		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_CONTROL || e.getKeyCode()==KeyEvent.VK_DOWN) {
 			System.out.println("DUCK");
@@ -68,9 +70,12 @@ GamePanel(){
 		f.fillRect(0, 0, 800, 500);
 	}
 	mobm.draw(f);
+	//po.draw(f);
 	}
 	void updateGame(){
 		mobm.update();
+	//	for(i = 0; i < )
+		//po.update();
 		if(player.isActive == false) {
 			
 		}
@@ -104,6 +109,11 @@ GamePanel(){
 		if(e.getKeyCode()==KeyEvent.VK_D || e.getKeyCode()==KeyEvent.VK_RIGHT) {
 			System.out.println("MOVE RIGHT");
 			mobm.player2.walkRight(false);
+		}
+		if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_SPACE || e.getKeyCode()==KeyEvent.VK_UP) {
+		//	System.out.println("JUMP RELEASE");
+			//mobm.player2.jump();
+		//	mobm.player2.isJumping = false;
 		}
 	}
 
