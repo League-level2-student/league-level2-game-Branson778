@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -58,18 +59,28 @@ public class Player extends MovingObject {
  }
   public void jump(int velocity) {
 	  System.out.println("jump");
-	//  for (int i = 0; i < 7; i++) {
-	//	y-=jump;
-		//draw(g);
-	//	System.out.println("jumpUp"+i);
-//	}
-	//  for (int i = 0; i < 7; i++) {
-	//	y+=jump;
-		//draw(g);
-		//System.out.println("jumpDown"+i);
-//	}
-	  y=y-velocity;
-	 // draw(g);
+	  int newY;
+	  newY = y-velocity;
+	  Rectangle collider = new Rectangle(x,newY,width,height);
+	  if(!MovingObjectManager.checkCollisionArea(collider)) {
+		 y=newY; 
+	  }
+  }
+  void applyGravity() {
+	  int newY;
+	  newY = y-velocity;
+	  Rectangle collider = new Rectangle(x,newY,width,height);
+	  if(!MovingObjectManager.checkCollisionArea(collider)) {
+		 y=newY; 
+	  }
+	  else{
+		 velocity=0; 
+	  }
+		velocity = velocity-2;
+		if(velocity<-26) {
+
+			velocity = 26;
+		}
   }
   public void duck(boolean shouldDuck) {
  if(isDucking==true && shouldDuck==false && height==targetHeight && isJumping==false) {
@@ -91,6 +102,7 @@ public class Player extends MovingObject {
  }
   }
 public void update() {
+	super.update();
 	//System.out.println("update");
 	//if(isDucking==true) {
 		//height = 25;
@@ -108,7 +120,7 @@ public void update() {
 		int heightDif=height-50;
 		y=previousY-heightDif;
 	}
-	if(isJumping==true) {
+	/*if(isJumping==true) {
 		jump(velocity);
 		velocity = velocity-2;
 		if(velocity<-26) {
@@ -116,6 +128,8 @@ public void update() {
 			velocity = 26;
 		}
 	}
+	*/
+	applyGravity();
 	if(isSprinting==true && stamina>0) {
 		speed = 10;
 		stamina--;
@@ -133,10 +147,20 @@ public void update() {
 	//	speed = 5;
 	//}
 	if(goingLeft==true) {
-		x-=speed;
+		//x-=speed;
+		int newX = x-speed;
+		Rectangle collider = new Rectangle(newX,y,width,height);
+		if(!MovingObjectManager.checkCollisionArea(collider)) {
+			x=newX;
+		}
 	}
 	if(goingRight==true) {
-		x+=speed;
+		//x+=speed;
+		int newX = x+speed;
+		Rectangle collider = new Rectangle(newX,y,width,height);
+		if(!MovingObjectManager.checkCollisionArea(collider)) {
+			x=newX;
+		}
 	}
 }
 void loadImage(String imageFile) {

@@ -27,7 +27,7 @@ ArrowDispenser(int x, int y, int width, int height, boolean facingRight) {
 //public boolean facingLeft = false;
 public boolean facingRight = false;
 public Arrow getArrow() {
-	return new Arrow(x, y+height/2-12, 34, 9 ,facingRight );
+	return new Arrow(x, y+height/2-15, 34, 9,facingRight );
 }
 void draw(Graphics g) {
 	if (gotImage) {

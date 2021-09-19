@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -7,9 +8,9 @@ import java.util.ArrayList;
 import javax.swing.Timer;
 
 public class MovingObjectManager implements ActionListener {
-Player player2 = new Player(50, 400, 50, 50);
+static Player player2 = new Player(50, 400, 50, 50);
 ArrayList<Arrow> arrows = new ArrayList<Arrow>();
-ArrayList<ArrowDispenser> dispensers = new ArrayList<ArrowDispenser>();
+static ArrayList<ArrowDispenser> dispensers = new ArrayList<ArrowDispenser>();
 Timer arrowFire = new Timer(1000, this);
 int debugInt;
 
@@ -29,6 +30,8 @@ MovingObjectManager(){
 }
 void update(){
 	player2.update();
+	checkCollision();
+	purgeObjects();
 	for (int i = 0; i < arrows.size(); i++) {
 		arrows.get(i).update();
 	}
@@ -43,6 +46,32 @@ void startObjects() {
 }
 void addArrow(Arrow arrow) {
 	arrows.add(arrow);
+}
+void purgeObjects() {
+	for (int i = 0; i < arrows.size(); i++) {
+		if(arrows.get(i).isActive == false) {
+			arrows.remove(i);
+			System.out.println("arrow removed");
+		}
+	}
+}
+void checkCollision() {
+	for (int i = 0; i < arrows.size(); i++) {
+		if(arrows.get(i).collisionBox.intersects(player2.collisionBox)){
+		arrows.get(i).isActive = false;
+		player2.isActive = false;
+		System.out.println("collisionBox instersection/arrow");
+	}
+	}
+}
+public static boolean checkCollisionArea(Rectangle collider) {
+	for (int i = 0; i < dispensers.size(); i++) {
+		if(dispensers.get(i).collisionBox.intersects(collider)) {
+			System.out.println("collisionBox intersection/dispenser");
+			return true;
+		}
+	}
+	return false;
 }
 @Override
 public void actionPerformed(ActionEvent arg0) {

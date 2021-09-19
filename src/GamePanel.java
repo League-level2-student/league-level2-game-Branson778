@@ -44,11 +44,11 @@ GamePanel(){
 			//mobm.player2.previousY=mobm.player2.y;
 			//mobm.player2.y+=25;
 		}
-		if(e.getKeyCode()==KeyEvent.VK_A || e.getKeyCode()==KeyEvent.VK_LEFT) {
+		if(e.getKeyCode()==KeyEvent.VK_A || e.getKeyCode()==KeyEvent.VK_LEFT ) {
 			System.out.println("MOVE LEFT");
 			mobm.player2.walkLeft(true);
 		}
-		if(e.getKeyCode()==KeyEvent.VK_D || e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		if(e.getKeyCode()==KeyEvent.VK_D || e.getKeyCode()==KeyEvent.VK_RIGHT ) {
 			System.out.println("MOVE RIGHT");
 			mobm.player2.walkRight(true);
 		}
@@ -71,6 +71,9 @@ GamePanel(){
 	}
 	void updateGame(){
 		mobm.update();
+		if(player.isActive == false) {
+			
+		}
 	}
 	
 	@Override

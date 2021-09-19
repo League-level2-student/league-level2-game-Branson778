@@ -28,6 +28,7 @@ public class Arrow extends MovingObject{
 		}
 	}
 void update() {
+	super.update();
 	if(facingRight==true) {
 		moveRight();
 	}
