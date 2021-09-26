@@ -12,6 +12,8 @@ static Player player2 = new Player(50, 350, 50, 50);
 ArrayList<Arrow> arrows = new ArrayList<Arrow>();
 static ArrayList<PlatformObject> platforms = new ArrayList<PlatformObject>();
 static ArrayList<ArrowDispenser> dispensers = new ArrayList<ArrowDispenser>();
+static ArrayList<DeathBlock> deathBlocks = new ArrayList<DeathBlock>();
+static ArrayList<Baddie> baddies = new ArrayList<Baddie>();
 Timer arrowFire = new Timer(1000, this);
 int debugInt;
 
@@ -25,6 +27,12 @@ void  draw (Graphics h) {
 	}
 	for (int i = 0; i < platforms.size(); i++) {
 		platforms.get(i).draw(h);
+	}
+	for (int i = 0; i < deathBlocks.size(); i++) {
+		deathBlocks.get(i).draw(h);
+	}
+	for (int i = 0; i < baddies.size(); i++) {
+		baddies.get(i).draw(h);
 	}
 	//h.setColor(Color.RED);
 	//h.fillRect(50, 50, 15, 15);
@@ -45,12 +53,19 @@ void update(){
 	for (int i = 0; i < platforms.size(); i++) {
 		platforms.get(i).update();
 	}
+	for (int i = 0; i < deathBlocks.size(); i++) {
+		deathBlocks.get(i).update();
+	}
+	for (int i = 0; i < baddies.size(); i++) {
+		baddies.get(i).update();
+	}
 }
 void startObjects() {
 	arrowFire.start();
 	dispensers.add(new ArrowDispenser(200,400,50,50,true));
 	dispensers.add(new ArrowDispenser(600,300,50,50,false));
 	platforms.add(new PlatformObject(0, 450, 800, 199));
+	deathBlocks.add(new DeathBlock(150,425,50,25));
 }
 void addArrow(Arrow arrow) {
 	arrows.add(arrow);
@@ -62,6 +77,12 @@ void purgeObjects() {
 			System.out.println("arrow removed");
 		}
 	}
+	for (int i = 0; i < baddies.size(); i++) {
+		if(baddies.get(i).isActive == false) {
+			baddies.remove(i);
+			System.out.println("baddie removed");
+		}
+	}
 }
 void checkCollision() {
 	for (int i = 0; i < arrows.size(); i++) {
@@ -69,6 +90,12 @@ void checkCollision() {
 		arrows.get(i).isActive = false;
 		player2.isActive = false;
 		System.out.println("collisionBox instersection/arrow");
+	}
+	}
+	for (int i = 0; i < deathBlocks.size(); i++) {
+	if(deathBlocks.get(i).collisionBox.intersects(player2.collisionBox)) {
+		System.out.println("collisionBox intersection/deathBlock");
+		player2.isActive = false;
 	}
 	}
 }
@@ -87,6 +114,7 @@ public static boolean checkCollisionArea(Rectangle collider) {
 	}
 	return false;
 }
+
 @Override
 public void actionPerformed(ActionEvent arg0) {
 	// TODO Auto-generated method stub

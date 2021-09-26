@@ -36,8 +36,10 @@ GamePanel(){
 		if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_SPACE || e.getKeyCode()==KeyEvent.VK_UP) {
 			System.out.println("JUMP");
 			//mobm.player2.jump();
-			mobm.player2.isJumping = true;
+			if(mobm.player2.isJumping == false) {
 			mobm.player2.velocity = 26;
+			mobm.player2.isJumping = true;
+			}
 		}
 		if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_CONTROL || e.getKeyCode()==KeyEvent.VK_DOWN) {
 			System.out.println("DUCK");
@@ -77,7 +79,7 @@ GamePanel(){
 	//	for(i = 0; i < )
 		//po.update();
 		if(player.isActive == false) {
-			
+			//System.out.println("player/dead");
 		}
 	}
 	
