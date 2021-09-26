@@ -7,6 +7,7 @@ public class DeathBlock {
 	int y;
 	int width;
 	int height;
+	int anotherDebug;
 	Rectangle collisionBox;
 	boolean touchingSide = false;
 	boolean touchingBottom = false;
