@@ -66,7 +66,10 @@ void startObjects() {
 	dispensers.add(new ArrowDispenser(600,300,50,50,false));
 	platforms.add(new PlatformObject(0, 450, 800, 199));
 	deathBlocks.add(new DeathBlock(150,425,50,25));
-	baddies.add(new Baddie(600,400,50,50,0,0,true));
+	baddies.add(new Baddie(600,400,50,50,250,600,true));
+	baddies.add(new Baddie(250,400,50,50,250,600,true));
+	baddies.add(new Baddie(650,400,50,50,150,400,false));
+	baddies.add(new Baddie(650,150,50,50,150,400,false));
 }
 void addArrow(Arrow arrow) {
 	arrows.add(arrow);
@@ -95,9 +98,17 @@ void checkCollision() {
 	}
 	for (int i = 0; i < deathBlocks.size(); i++) {
 	if(deathBlocks.get(i).collisionBox.intersects(player2.collisionBox)) {
-		System.out.println("collisionBox intersection/deathBlock");
+		System.out.println("collisionBox intersection/deathBlock player");
 		player2.isActive = false;
 	}
+	}
+	for (int i = 0; i < deathBlocks.size(); i++) {
+		for(int j = 0; j < arrows.size(); j++) {
+			if(deathBlocks.get(i).collisionBox.intersects(arrows.get(j).collisionBox)) {
+				System.out.println("collisionBox intersection/deathBlock arrow");
+				arrows.get(j).isActive = false;
+			}
+		}
 	}
 	for (int i =0; i < baddies.size(); i++) {
 		if(baddies.get(i).collisionBox.intersects(player2.collisionBox)) {
@@ -108,7 +119,7 @@ void checkCollision() {
 	for (int i = 0; i < baddies.size(); i++) {
 		for(int j = 0; j < arrows.size(); j++) {
 			if(baddies.get(i).collisionBox.intersects(arrows.get(j).collisionBox)) {
-				System.out.println("collisionBox intersection/ baddie arrow");
+				System.out.println("collisionBox intersection/baddie arrow");
 				arrows.get(j).isActive = false;
 			}
 		}
