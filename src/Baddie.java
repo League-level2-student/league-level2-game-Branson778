@@ -15,13 +15,15 @@ public class Baddie {
 	boolean touchingBottom = false;
 	boolean touchingTop = false;
 	boolean isActive = true;
-	Baddie(int x, int y, int width, int height, int target1, int target2){
+	boolean sideMove;
+	Baddie(int x, int y, int width, int height, int target1, int target2, boolean sideMove){
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		this.target1 = target1;
 		this.target2 = target2;
+		this.sideMove = sideMove;
 	collisionBox = new Rectangle(x,y,width,height);
 }
 	void update() {

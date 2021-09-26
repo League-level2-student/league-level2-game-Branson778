@@ -22,6 +22,9 @@ void  draw (Graphics h) {
 	for (int i = 0; i < arrows.size(); i++) {
 		arrows.get(i).draw(h);
 	}
+	for (int i = 0; i < baddies.size(); i++) {
+		baddies.get(i).draw(h);
+	}
 	for (int i = 0; i < dispensers.size(); i++) {
 		dispensers.get(i).draw(h);
 	}
@@ -30,9 +33,6 @@ void  draw (Graphics h) {
 	}
 	for (int i = 0; i < deathBlocks.size(); i++) {
 		deathBlocks.get(i).draw(h);
-	}
-	for (int i = 0; i < baddies.size(); i++) {
-		baddies.get(i).draw(h);
 	}
 	//h.setColor(Color.RED);
 	//h.fillRect(50, 50, 15, 15);
@@ -66,6 +66,7 @@ void startObjects() {
 	dispensers.add(new ArrowDispenser(600,300,50,50,false));
 	platforms.add(new PlatformObject(0, 450, 800, 199));
 	deathBlocks.add(new DeathBlock(150,425,50,25));
+	baddies.add(new Baddie(600,400,50,50,0,0,true));
 }
 void addArrow(Arrow arrow) {
 	arrows.add(arrow);
@@ -97,6 +98,20 @@ void checkCollision() {
 		System.out.println("collisionBox intersection/deathBlock");
 		player2.isActive = false;
 	}
+	}
+	for (int i =0; i < baddies.size(); i++) {
+		if(baddies.get(i).collisionBox.intersects(player2.collisionBox)) {
+			System.out.println("collisionBox interscetion/baddie player");
+			player2.isActive = false;
+		}
+	}
+	for (int i = 0; i < baddies.size(); i++) {
+		for(int j = 0; j < arrows.size(); j++) {
+			if(baddies.get(i).collisionBox.intersects(arrows.get(j).collisionBox)) {
+				System.out.println("collisionBox intersection/ baddie arrow");
+				arrows.get(j).isActive = false;
+			}
+		}
 	}
 }
 public static boolean checkCollisionArea(Rectangle collider) {
