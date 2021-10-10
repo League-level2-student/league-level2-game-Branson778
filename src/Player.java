@@ -37,7 +37,7 @@ public class Player extends MovingObject {
 	}
 	void draw (Graphics g) {
 		if(gotImage) {
-			g.drawImage(image, x, y, width, height, null);
+			g.drawImage(image, PrecariousPlatformsRunner.WIDTH/2, y, width, height, null);
 		}
 		else {
 		g.setColor(Color.RED);

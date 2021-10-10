@@ -31,7 +31,8 @@ public Arrow getArrow() {
 }
 void draw(Graphics g) {
 	if (gotImage) {
-		g.drawImage(image, x, y, width, height, null);
+		int xDifferencial = x - MovingObjectManager.player2.x;
+		g.drawImage(image, PrecariousPlatformsRunner.WIDTH/2 + xDifferencial, y, width, height, null);
 	} else {
 		g.setColor(Color.GREEN);
 		g.fillRect(x, y, width, height);

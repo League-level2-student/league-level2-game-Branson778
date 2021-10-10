@@ -21,6 +21,7 @@ int debugInt;
 public static BufferedImage image;
 public static boolean needImage = true;
 public static boolean gotImage = false;	
+boolean godMode = true;
 GamePanel(){
 	frameDraw = new Timer(1000/60, this);
 	frameDraw.start();
@@ -66,10 +67,10 @@ GamePanel(){
 	//f.setColor(Color.GRAY);
 	//f.fillRect(0, 0, 800, 500);
 	if (gotImage) {
-		f.drawImage(image, 0, 0, 800, 500, null);
+		f.drawImage(image, 0, 0, PrecariousPlatformsRunner.WIDTH, PrecariousPlatformsRunner.LENGTH, null);
 	} else {
 		f.setColor(Color.GRAY);
-		f.fillRect(0, 0, 800, 500);
+		f.fillRect(0, 0, PrecariousPlatformsRunner.WIDTH, PrecariousPlatformsRunner.LENGTH);
 	}
 	mobm.draw(f);
 	//po.draw(f);
@@ -78,8 +79,8 @@ GamePanel(){
 		mobm.update();
 	//	for(i = 0; i < )
 		//po.update();
-		if(player.isActive == false) {
-			//System.out.println("player/dead");
+		if(player.isActive == false && godMode == false) {
+			System.out.println("player/dead");
 		}
 	}
 	

@@ -28,6 +28,7 @@ public class PlatformObject {
 	void draw(Graphics g) {
 		g.setColor(Color.GRAY);
 		//g.drawRect(800,500,800,299);
-		g.fillRect(x, y, width, height);
+		int xDifferencial = x - MovingObjectManager.player2.x;
+		g.fillRect(PrecariousPlatformsRunner.WIDTH/2 + xDifferencial, y, width, height);
 	}
 }

@@ -18,7 +18,6 @@ Timer arrowFire = new Timer(1000, this);
 int debugInt;
 
 void  draw (Graphics h) {
-	player2.draw(h);
 	for (int i = 0; i < arrows.size(); i++) {
 		arrows.get(i).draw(h);
 	}
@@ -34,6 +33,7 @@ void  draw (Graphics h) {
 	for (int i = 0; i < deathBlocks.size(); i++) {
 		deathBlocks.get(i).draw(h);
 	}
+	player2.draw(h);
 	//h.setColor(Color.RED);
 	//h.fillRect(50, 50, 15, 15);
 }
@@ -64,8 +64,9 @@ void startObjects() {
 	arrowFire.start();
 	dispensers.add(new ArrowDispenser(200,400,50,50,true));
 	dispensers.add(new ArrowDispenser(600,300,50,50,false));
-	platforms.add(new PlatformObject(0, 450, 800, 199));
+	platforms.add(new PlatformObject(0, 450, 1600, 199));
 	platforms.add(new PlatformObject(200,300,50,50));
+	platforms.add(new PlatformObject(-400,0,400,PrecariousPlatformsRunner.LENGTH));
 	deathBlocks.add(new DeathBlock(150,425,50,25));
 	baddies.add(new Baddie(600,400,50,50,250,600,true));
 	baddies.add(new Baddie(250,400,50,50,250,600,true));
