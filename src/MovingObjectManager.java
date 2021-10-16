@@ -80,13 +80,13 @@ void purgeObjects() {
 	for (int i = 0; i < arrows.size(); i++) {
 		if(arrows.get(i).isActive == false) {
 			arrows.remove(i);
-			System.out.println("arrow removed");
+			//System.out.println("arrow removed");
 		}
 	}
 	for (int i = 0; i < baddies.size(); i++) {
 		if(baddies.get(i).isActive == false) {
 			baddies.remove(i);
-			System.out.println("baddie removed");
+		//	System.out.println("baddie removed");
 		}
 	}
 }
@@ -95,33 +95,33 @@ void checkCollision() {
 		if(arrows.get(i).collisionBox.intersects(player2.collisionBox)){
 		arrows.get(i).isActive = false;
 		player2.isActive = false;
-		System.out.println("collisionBox instersection/arrow");
+	//	System.out.println("collisionBox instersection/arrow");
 	}
 	}
 	for (int i = 0; i < deathBlocks.size(); i++) {
 	if(deathBlocks.get(i).collisionBox.intersects(player2.collisionBox)) {
-		System.out.println("collisionBox intersection/deathBlock player");
+	//	System.out.println("collisionBox intersection/deathBlock player");
 		player2.isActive = false;
 	}
 	}
 	for (int i = 0; i < deathBlocks.size(); i++) {
 		for(int j = 0; j < arrows.size(); j++) {
 			if(deathBlocks.get(i).collisionBox.intersects(arrows.get(j).collisionBox)) {
-				System.out.println("collisionBox intersection/deathBlock arrow");
+			//	System.out.println("collisionBox intersection/deathBlock arrow");
 				arrows.get(j).isActive = false;
 			}
 		}
 	}
 	for (int i =0; i < baddies.size(); i++) {
 		if(baddies.get(i).collisionBox.intersects(player2.collisionBox)) {
-			System.out.println("collisionBox interscetion/baddie player");
+			//System.out.println("collisionBox interscetion/baddie player");
 			player2.isActive = false;
 		}
 	}
 	for (int i = 0; i < baddies.size(); i++) {
 		for(int j = 0; j < arrows.size(); j++) {
 			if(baddies.get(i).collisionBox.intersects(arrows.get(j).collisionBox)) {
-				System.out.println("collisionBox intersection/baddie arrow");
+			//	System.out.println("collisionBox intersection/baddie arrow");
 				arrows.get(j).isActive = false;
 			}
 		}
@@ -129,7 +129,7 @@ void checkCollision() {
 	for (int i = 0; i < platforms.size(); i++) {
 		for (int j = 0; j < arrows.size(); j++) {
 			if(platforms.get(i).collisionBox.intersects(arrows.get(j).collisionBox)) {
-				System.out.println("collisionBox intersction/platform arrow");
+				//System.out.println("collisionBox intersction/platform arrow");
 				arrows.get(j).isActive = false;
 			}
 		}
@@ -146,13 +146,13 @@ void checkCollision() {
 public static boolean checkCollisionArea(Rectangle collider) {
 	for (int i = 0; i < dispensers.size(); i++) {
 		if(dispensers.get(i).collisionBox.intersects(collider)) {
-			System.out.println("collisionBox intersection/dispenser player");
+			//System.out.println("collisionBox intersection/dispenser player");
 			return true;
 		}
 	}
 	for (int i = 0; i < platforms.size(); i++) {
 		if(platforms.get(i).collisionBox.intersects(collider)) {
-			System.out.println("collisionBox intersection/platform player");
+			//System.out.println("collisionBox intersection/platform player");
 			return true;
 		}
 	}
