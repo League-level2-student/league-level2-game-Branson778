@@ -158,7 +158,13 @@ public static boolean checkCollisionArea(Rectangle collider) {
 	}
 	return false;
 }
-
+public void playerBump() {
+	for(int i = 0; i < platforms.size(); i++) {
+		if(platforms.get(i).collisionBox.intersects(player2.collisionBox)) {
+			
+		}
+	}
+}
 @Override
 public void actionPerformed(ActionEvent arg0) {
 	// TODO Auto-generated method stub

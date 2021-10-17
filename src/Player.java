@@ -13,7 +13,7 @@ public class Player extends MovingObject {
  int previousY;
  int targetHeight = 50;
  int velocity = 0;
- double stamina = 200;
+ double stamina = 100;
  Font earlyStageStaminaFont = new Font("Arial", Font.PLAIN, 35);
  public boolean isJumping = false;
  public boolean goingLeft = false;
@@ -88,11 +88,11 @@ public class Player extends MovingObject {
  if(isDucking==true && shouldDuck==false && height==targetHeight && isJumping==false) {
 	 isDucking=false;
 	targetHeight=50; 
-	y=previousY;
+	//y=previousY;
  }
  if(isDucking==false && shouldDuck==true && height==targetHeight && isJumping==false) {
 	 isDucking=true;
-	 previousY=y;
+//	 previousY=y;
 	// y+=25;
 	 targetHeight = 25;
  } 
@@ -101,7 +101,7 @@ public class Player extends MovingObject {
  }
  if(isDucking==false && shouldDuck==false) {
 	 
- }
+ }  
   }
 public void update() {
 	super.update();
@@ -115,12 +115,12 @@ public void update() {
 	if(height<targetHeight) {
 		height++;
 		int heightDif=50-height;
-		y=previousY+heightDif;
+	//	y=previousY+heightDif;
 	}
 	if(height>targetHeight) {
 		height--;
 		int heightDif=height-50;
-		y=previousY-heightDif;
+	//	y=previousY-heightDif;
 	}
 	/*if(isJumping==true) {
 		jump(velocity);
@@ -133,12 +133,12 @@ public void update() {
 	*/
 	applyGravity();
 	if(isSprinting==true && stamina>0) {
-		speed = 10;
+		speed = 8;
 		stamina--;
 	}
 	else {
 		speed = 4;
-		if(stamina<200 && isSprinting == false) {
+		if(stamina<100 && isSprinting == false) {
 			stamina+=0.5;
 		}
 	}
