@@ -88,11 +88,11 @@ public class Player extends MovingObject {
  if(isDucking==true && shouldDuck==false && height==targetHeight && isJumping==false) {
 	 isDucking=false;
 	targetHeight=50; 
-	//y=previousY;
+	//previousY=y;
  }
  if(isDucking==false && shouldDuck==true && height==targetHeight && isJumping==false) {
 	 isDucking=true;
-//	 previousY=y;
+	// y=previousY;
 	// y+=25;
 	 targetHeight = 25;
  } 
@@ -114,11 +114,13 @@ public void update() {
 	//}
 	if(height<targetHeight) {
 		height++;
+		y--;
 		int heightDif=50-height;
 	//	y=previousY+heightDif;
 	}
 	if(height>targetHeight) {
 		height--;
+		y++;
 		int heightDif=height-50;
 	//	y=previousY-heightDif;
 	}
