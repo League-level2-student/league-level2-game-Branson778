@@ -15,6 +15,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Player player = mobm.player2;
 Timer frameDraw;
 int debugInt;
+int backgroundX = 0;
+int backgroundY = 0;
+Background gameBackground = new Background(backgroundX, backgroundY, PrecariousPlatformsRunner.WIDTH, PrecariousPlatformsRunner.LENGTH);
 //PlatformObject po = new PlatformObject(0, 450, 800, 199);
 //boolean ifJump = false;
 //int velocity = 26;
@@ -63,16 +66,23 @@ GamePanel(){
 			mobm.player2.isSprinting=true;
 		}
 	}
+	void drawBackground(Graphics f) {
+	/*	if (gotImage) {
+			for(int i = 0; i < 3; i++) {
+			f.drawImage(image, backgroundX + i*PrecariousPlatformsRunner.WIDTH, backgroundY, PrecariousPlatformsRunner.WIDTH, PrecariousPlatformsRunner.LENGTH, null);
+			}
+		} else {
+			f.setColor(Color.GRAY);
+			f.fillRect(0, 0, PrecariousPlatformsRunner.WIDTH, PrecariousPlatformsRunner.LENGTH);
+		} */
+		
+	}
 	void drawGame(Graphics f){
 	//f.setColor(Color.GRAY);
 	//f.fillRect(0, 0, 800, 500);
-	if (gotImage) {
-		f.drawImage(image, 0, 0, PrecariousPlatformsRunner.WIDTH, PrecariousPlatformsRunner.LENGTH, null);
-	} else {
-		f.setColor(Color.GRAY);
-		f.fillRect(0, 0, PrecariousPlatformsRunner.WIDTH, PrecariousPlatformsRunner.LENGTH);
-	}
-	mobm.draw(f);
+  //  drawBackground(f);
+	gameBackground.draw(f);
+		mobm.draw(f);
 	//po.draw(f);
 	}
 	void updateGame(){
