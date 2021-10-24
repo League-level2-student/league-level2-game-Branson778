@@ -26,7 +26,7 @@ GamePanel(){
 	frameDraw = new Timer(1000/60, this);
 	frameDraw.start();
 	if(needImage) {
-		loadImage("gameBackground.png");
+		loadImage("gameBackground2.png");
 	}
 	mobm.startObjects();
 }
