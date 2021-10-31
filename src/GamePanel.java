@@ -34,7 +34,8 @@ GamePanel(){
 		loadImage("gameBackgroundTEST.png");
 	}
 	mobm.startObjects();
-	playSound("junglealt2.wav");
+	//playSound("5325576581152768.wav");
+	//playSound("jungleexcessive.wav");
 }
 	@Override
 	
@@ -149,10 +150,10 @@ GamePanel(){
 	public static void main(String[] args) {
 		
 	}
-	private void playSound(String fileName) {
+	/*private void playSound(String fileName) {
 		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
-		sound.loop();
-	}
+		sound.play();
+	} */
 	void loadImage(String imageFile) {
 	    if (needImage) {
 	        try {
