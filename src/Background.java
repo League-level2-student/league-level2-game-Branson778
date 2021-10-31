@@ -35,7 +35,7 @@ public class Background {
 	}
 
 	void update() {
-
+     x = -MovingObjectManager.player2.x%width;
 	}
 
 	void loadImage(String imageFile) {

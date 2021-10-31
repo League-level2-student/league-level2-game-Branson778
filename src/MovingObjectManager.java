@@ -64,7 +64,7 @@ void startObjects() {
 	arrowFire.start();
 	dispensers.add(new ArrowDispenser(200,400,50,50,true));
 	dispensers.add(new ArrowDispenser(600,300,50,50,false));
-	platforms.add(new PlatformObject(0, 450, 1600, 199));
+	platforms.add(new PlatformObject(0, 450, 100000, 199));
 	platforms.add(new PlatformObject(200,300,50,50));
 	platforms.add(new PlatformObject(-400,0,400,PrecariousPlatformsRunner.LENGTH));
 	deathBlocks.add(new DeathBlock(150,425,50,25));

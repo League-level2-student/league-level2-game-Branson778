@@ -1,3 +1,4 @@
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.JApplet;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -32,6 +34,7 @@ GamePanel(){
 		loadImage("gameBackgroundTEST.png");
 	}
 	mobm.startObjects();
+	playSound("junglealt2.wav");
 }
 	@Override
 	
@@ -86,6 +89,7 @@ GamePanel(){
 	//po.draw(f);
 	}
 	void updateGame(){
+		gameBackground.update();
 		mobm.update();
 	//	for(i = 0; i < )
 		//po.update();
@@ -144,6 +148,10 @@ GamePanel(){
 	}
 	public static void main(String[] args) {
 		
+	}
+	private void playSound(String fileName) {
+		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
+		sound.loop();
 	}
 	void loadImage(String imageFile) {
 	    if (needImage) {
