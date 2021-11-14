@@ -67,9 +67,9 @@ public class MovingObjectManager implements ActionListener {
 		arrowFire.start();
 		dispensers.add(new ArrowDispenser(200, 400, 50, 50, true));
 		dispensers.add(new ArrowDispenser(600, 300, 50, 50, false));
-		platforms.add(new PlatformObject(0, 450, 100000, 199, "Tileset_2EDIT6FLOOR.png"));
 		platforms.add(new PlatformObject(200, 300, 50, 50, "Tileset_2EDIT6.png"));
-		platforms.add(new PlatformObject(-400, 0, 400, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6FLOOR.png"));
+		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
+		platforms.add(new PlatformObject(-600, 450, 100600, 199, "Tileset_2EDIT6FLOOR.png"));
 		deathBlocks.add(new DeathBlock(150, 425, 50, 25));
 		baddies.add(new Baddie(600, 400, 50, 50, 250, 600, true));
 		baddies.add(new Baddie(250, 400, 50, 50, 250, 600, true));

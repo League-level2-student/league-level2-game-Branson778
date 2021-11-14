@@ -12,7 +12,7 @@ public class Player extends MovingObject {
 	int debugInt;
 	int previousY;
 	int targetHeight = 50;
-	int velocity = 0;
+	double velocity = 0;
 	double stamina = 100;
 	Font earlyStageStaminaFont = new Font("Arial", Font.PLAIN, 35);
 	public boolean isJumping = false;
@@ -28,9 +28,9 @@ public class Player extends MovingObject {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		if (needImage) {
-			loadImage("player.png");
+			loadImage("player2.png");
 		}
-		speed = 4;
+		speed = 1;
 		// x=50;
 		// y=50;
 		// width=50;
@@ -68,7 +68,7 @@ public class Player extends MovingObject {
 	 */
 	void applyGravity() {
 		int newY;
-		newY = y - velocity;
+		newY = (int) (y - velocity);
 		Rectangle collider = new Rectangle(x, newY, width, height);
 		if (!MovingObjectManager.checkCollisionArea(collider)) {
 			y = newY;
@@ -76,7 +76,7 @@ public class Player extends MovingObject {
 			velocity = 0;
 			isJumping = false;
 		}
-		velocity = velocity - 2;
+		velocity = velocity - 1.80;
 		if (velocity < -26) {
 			velocity = -26;
 		}
@@ -129,7 +129,7 @@ public class Player extends MovingObject {
 		 */
 		applyGravity();
 		if (isSprinting == true && stamina > 0) {
-			speed = 8;
+			speed = 6;
 			stamina--;
 		} else {
 			speed = 4;

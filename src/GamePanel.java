@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	boolean godMode = true;
 
 	GamePanel() {
-		frameDraw = new Timer(1000 / 60, this);
+		frameDraw = new Timer(1000 / 63, this);
 		frameDraw.start();
 		if (needImage) {
 			loadImage("gameBackgroundTEST.png");
