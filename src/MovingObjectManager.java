@@ -173,13 +173,13 @@ public class MovingObjectManager implements ActionListener {
 	}
 	public void theTrueStory() {
 		JOptionPane.showMessageDialog(null, "You are the enslaver, the true villian. The slaves are mindless, but still try to take revenge. No one can control the eternal flame, no even you. Everyone thinks you are their tried savior and they follow orders and try to kill you. Run as long as possible to survive for more time. Time is all you need.");
-		//player2.theTrueStory();
-		//for(int i = 0; i < deathBlocks.size(); i++) {
-		//	deathBlocks.get(i).theTrueStory();
-	//	}
-	//	for(int i = 0; i < baddies.size(); i++) {
-	//		baddies.get(i).theTrueStory();
-	//	}
+		player2.theTrueStory();
+		for(int i = 0; i < deathBlocks.size(); i++) {
+			deathBlocks.get(i).theTrueStory();
+		}
+		for(int i = 0; i < baddies.size(); i++) {
+			baddies.get(i).theTrueStory();
+		}
 	}
 
 	@Override

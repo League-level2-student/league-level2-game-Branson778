@@ -174,5 +174,6 @@ public class Player extends MovingObject {
 	}
 	public void theTrueStory() {
 		loadImage("deathblock.png");
+		//g.drawImage(image, PrecariousPlatformsRunner.WIDTH / 2, y, width, height, null);
 	}
 }
