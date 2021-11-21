@@ -28,7 +28,7 @@ public class Player extends MovingObject {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		if (needImage) {
-			loadImage("player2.png");
+			loadImage("player6.png");
 		}
 		speed = 1;
 		// x=50;
@@ -171,5 +171,8 @@ public class Player extends MovingObject {
 			}
 			needImage = false;
 		}
+	}
+	public void theTrueStory() {
+		loadImage("deathblock.png");
 	}
 }

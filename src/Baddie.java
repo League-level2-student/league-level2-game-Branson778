@@ -99,4 +99,7 @@ public class Baddie {
 			needImage = false;
 		}
 	}
+	public void theTrueStory() {
+		loadImage("player6.png");
+	}
 }

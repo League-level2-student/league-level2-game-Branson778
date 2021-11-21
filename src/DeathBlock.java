@@ -59,4 +59,7 @@ public class DeathBlock {
 			needImage = false;
 		}
 	}
+	public void theTrueStory() {
+		loadImage("player6.png");
+	}
 }

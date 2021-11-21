@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.JApplet;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -19,6 +20,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int debugInt;
 	int backgroundX = 0;
 	int backgroundY = 0;
+	boolean theTrueStory = false;
 	Background gameBackground = new Background(backgroundX, backgroundY-80, PrecariousPlatformsRunner.WIDTH,PrecariousPlatformsRunner.LENGTH);
 //PlatformObject po = new PlatformObject(0, 450, 800, 199);
 //boolean ifJump = false;
@@ -31,7 +33,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	GamePanel() {
 		frameDraw = new Timer(1000 / 63, this);
 		frameDraw.start();
-		if (needImage) {
+        if (needImage) {
 			loadImage("gameBackgroundTEST.png");
 		}
 		mobm.startObjects();
@@ -72,6 +74,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			// System.out.println("TOGGLE SPRINT ON");
 			// mobm.player2.speed=7;
 			mobm.player2.isSprinting = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			theTrueStory = true;
 		}
 	}
 
