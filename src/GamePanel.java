@@ -76,7 +76,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			mobm.player2.isSprinting = true;
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			theTrueStory = true;
+			//theTrueStory = true;
+			mobm.theTrueStory();
 		}
 	}
 
