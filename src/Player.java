@@ -173,6 +173,7 @@ public class Player extends MovingObject {
 		}
 	}
 	public void theTrueStory() {
+		needImage = true;
 		loadImage("player6dark.png");
 		//g.drawImage(image, PrecariousPlatformsRunner.WIDTH / 2, y, width, height, null);
 	}
