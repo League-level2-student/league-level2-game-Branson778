@@ -69,7 +69,7 @@ public class MovingObjectManager implements ActionListener {
 		}
 	}
 
-	void startObjects() {
+	void startObjectsDebug() {
 		arrowFire.start();
 		dispensers.add(new ArrowDispenser(200, 400, 50, 50, true));
 		dispensers.add(new ArrowDispenser(600, 300, 50, 50, false));
@@ -83,7 +83,12 @@ public class MovingObjectManager implements ActionListener {
 		baddies.add(new Baddie(650, 150, 50, 50, 150, 400, false));
 		souls.add(new PowerSoul(204, 260, 39, 39));
 	}
-
+   void startObjects() {
+	   arrowFire.start();
+	   platforms = GenerationSystem.createPlatforms();
+		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
+	   platforms.add(new PlatformObject(-600, 450, 100600, 199, "Tileset_2EDIT6FLOOR.png"));
+   }
 	void addArrow(Arrow arrow) {
 		arrows.add(arrow);
 	}
