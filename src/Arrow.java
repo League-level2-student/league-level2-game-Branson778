@@ -17,10 +17,10 @@ public class Arrow extends MovingObject{
 		this.facingRight=facingRight;
 		if(needImage) {
 			if(facingRight==true) {
-				loadImage("arrowRight.png");
+				loadImage("arrowRight2.png");
 			}
 			else {
-				loadImage("arrowLeft.png");
+				loadImage("arrowLeft2.png");
 			}
 			//if(facingLeft==false && facingRight==false) {
 				//loadImage("gameBackground.png");

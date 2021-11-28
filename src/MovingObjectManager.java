@@ -15,6 +15,7 @@ public class MovingObjectManager implements ActionListener {
 	static ArrayList<ArrowDispenser> dispensers = new ArrayList<ArrowDispenser>();
 	static ArrayList<DeathBlock> deathBlocks = new ArrayList<DeathBlock>();
 	static ArrayList<Baddie> baddies = new ArrayList<Baddie>();
+	static ArrayList<PowerSoul> souls = new ArrayList<PowerSoul>();
 	boolean theTrueStory = false;
 	Timer arrowFire = new Timer(1000, this);
 	int debugInt;
@@ -31,6 +32,9 @@ public class MovingObjectManager implements ActionListener {
 		}
 		for (int i = 0; i < platforms.size(); i++) {
 			platforms.get(i).draw(h);
+		}
+		for(int i =0; i < souls.size(); i++) {
+			souls.get(i).draw(h);
 		}
 		for (int i = 0; i < deathBlocks.size(); i++) {
 			deathBlocks.get(i).draw(h);
@@ -77,6 +81,7 @@ public class MovingObjectManager implements ActionListener {
 		baddies.add(new Baddie(250, 400, 50, 50, 250, 600, true));
 		baddies.add(new Baddie(650, 400, 50, 50, 150, 400, false));
 		baddies.add(new Baddie(650, 150, 50, 50, 150, 400, false));
+		souls.add(new PowerSoul(204, 260, 39, 39));
 	}
 
 	void addArrow(Arrow arrow) {
@@ -94,6 +99,11 @@ public class MovingObjectManager implements ActionListener {
 			if (baddies.get(i).isActive == false) {
 				baddies.remove(i);
 				// System.out.println("baddie removed");
+			}
+		}
+		for (int i = 0; i < souls.size(); i++) {
+			if(souls.get(i).isActive == false) {
+				souls.remove(i);
 			}
 		}
 	}
@@ -147,6 +157,12 @@ public class MovingObjectManager implements ActionListener {
 				}
 			}
 		}
+		for (int i = 0; i < souls.size(); i++) {
+			if(souls.get(i).collisionBox.intersects(player2.collisionBox)) {
+				player2.stamina = 100;
+				souls.get(i).isActive = false;
+			}
+		}
 	}
 
 	public static boolean checkCollisionArea(Rectangle collider) {
@@ -175,12 +191,17 @@ public class MovingObjectManager implements ActionListener {
 	public void theTrueStory() {
 		JOptionPane.showMessageDialog(null, "You are the enslaver, the true villian. The slaves are mindless, but still try to take revenge. No one can control the eternal flame, no even you. Everyone thinks you are their tried savior and they follow orders and try to kill you. Run as long as possible to survive for more time. Time is all you need.");
 		player2.theTrueStory();
-	//	for(int i = 0; i < deathBlocks.size(); i++) {
-	//		deathBlocks.get(i).theTrueStory();
-	//	}
-		//for(int i = 0; i < baddies.size(); i++) {
-	//		baddies.get(i).theTrueStory();
-	//	}
+		for(int i = 0; i < deathBlocks.size(); i++) {
+		deathBlocks.get(i).needImage = true;
+			deathBlocks.get(i).theTrueStory();
+		}
+		for(int i = 0; i < baddies.size(); i++) {
+			baddies.get(i).needImage = true;
+			baddies.get(i).theTrueStory();
+		}
+		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "deathBlock.png"));
+		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH/2, "Tileset_2EDIT6ROCK.png"));
+		platforms.add(new PlatformObject(-600, 450, 100600, 199, "Tileset_2EDIT6FLOOR.png"));
 	}
 
 	@Override
