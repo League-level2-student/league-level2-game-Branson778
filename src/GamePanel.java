@@ -6,8 +6,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JApplet;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,7 +25,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int backgroundX = 0;
 	int backgroundY = 0;
 	boolean theTrueStory = false;
-	Background gameBackground = new Background(backgroundX, backgroundY-80, PrecariousPlatformsRunner.WIDTH,PrecariousPlatformsRunner.LENGTH);
+	Background gameBackground = new Background(backgroundX, backgroundY - 80, PrecariousPlatformsRunner.WIDTH,
+			PrecariousPlatformsRunner.LENGTH);
 //PlatformObject po = new PlatformObject(0, 450, 800, 199);
 //boolean ifJump = false;
 //int velocity = 26;
@@ -33,12 +38,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	GamePanel() {
 		frameDraw = new Timer(1000 / 63, this);
 		frameDraw.start();
-        if (needImage) {
+		if (needImage) {
 			loadImage("gameBackgroundTEST.png");
 		}
 		mobm.startObjects();
 		// playSound("5325576581152768.wav");
-		// playSound("jungleexcessive.wav");
+		 playSound("jungleexcessive.wav");
 	}
 
 	@Override
@@ -75,8 +80,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			// mobm.player2.speed=7;
 			mobm.player2.isSprinting = true;
 		}
-		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			//mobm.theTrueStory = true;
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			// mobm.theTrueStory = true;
 			mobm.theTrueStory();
 		}
 	}
@@ -162,8 +167,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	private void playSound(String fileName) {
-		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
-		sound.play();
+		String path = "src/" + fileName;
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					Clip clip = AudioSystem.getClip();
+					AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
+					clip.open(inputStream);
+					clip.start();
+				} catch (Exception e) {
+					System.out.println("playSound error " + e.getMessage() + " for " + path);
+				}
+			}
+		}
+
+		).start();
 	}
 
 	void loadImage(String imageFile) {

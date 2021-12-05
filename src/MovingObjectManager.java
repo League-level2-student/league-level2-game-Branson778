@@ -30,14 +30,14 @@ public class MovingObjectManager implements ActionListener {
 		for (int i = 0; i < dispensers.size(); i++) {
 			dispensers.get(i).draw(h);
 		}
-		for (int i = 0; i < platforms.size(); i++) {
-			platforms.get(i).draw(h);
-		}
 		for(int i =0; i < souls.size(); i++) {
 			souls.get(i).draw(h);
 		}
 		for (int i = 0; i < deathBlocks.size(); i++) {
 			deathBlocks.get(i).draw(h);
+		}
+		for (int i = 0; i < platforms.size(); i++) {
+			platforms.get(i).draw(h);
 		}
 		player2.draw(h);
 		// h.setColor(Color.RED);
@@ -86,6 +86,10 @@ public class MovingObjectManager implements ActionListener {
    void startObjects() {
 	   arrowFire.start();
 	   platforms = GenerationSystem.createPlatforms();
+	   deathBlocks = GenerationSystem.createDeathBlocks();
+	   souls = GenerationSystem.createPowerSouls();
+	   dispensers = GenerationSystem.createDispensers();
+	   baddies = GenerationSystem.createBaddies();
 		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
 	   platforms.add(new PlatformObject(-600, 450, 100600, 199, "Tileset_2EDIT6FLOOR.png"));
    }
@@ -162,6 +166,7 @@ public class MovingObjectManager implements ActionListener {
 				}
 			}
 		}
+		
 		for (int i = 0; i < souls.size(); i++) {
 			if(souls.get(i).collisionBox.intersects(player2.collisionBox)) {
 				player2.stamina = 100;
