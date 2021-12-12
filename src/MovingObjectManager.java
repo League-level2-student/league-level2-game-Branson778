@@ -91,7 +91,7 @@ public class MovingObjectManager implements ActionListener {
 	   dispensers = GenerationSystem.createDispensers();
 	   baddies = GenerationSystem.createBaddies();
 		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
-	   platforms.add(new PlatformObject(-600, 450, 100600, 199, "Tileset_2EDIT6FLOOR.png"));
+	   platforms.add(new PlatformObject(-600, 450, 1000600, 199, "Tileset_2EDIT6FLOOR.png"));
    }
 	void addArrow(Arrow arrow) {
 		arrows.add(arrow);
@@ -211,7 +211,7 @@ public class MovingObjectManager implements ActionListener {
 		}
 		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "deathBlock.png"));
 		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH/2, "Tileset_2EDIT6ROCK.png"));
-		platforms.add(new PlatformObject(-600, 450, 100600, 199, "Tileset_2EDIT6FLOOR.png"));
+		platforms.add(new PlatformObject(-600, 450, 1000600, 199, "Tileset_2EDIT6FLOOR.png"));
 	}
 
 	@Override

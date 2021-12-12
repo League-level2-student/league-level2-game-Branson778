@@ -37,13 +37,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	GamePanel() {
 		frameDraw = new Timer(1000 / 63, this);
-		frameDraw.start();
 		if (needImage) {
 			loadImage("gameBackgroundTEST.png");
 		}
-		mobm.startObjects();
-		// playSound("5325576581152768.wav");
 		 playSound("jungleexcessive.wav");
+			mobm.startObjects();
+		frameDraw.start();
+		// playSound("5325576581152768.wav");
 	}
 
 	@Override
