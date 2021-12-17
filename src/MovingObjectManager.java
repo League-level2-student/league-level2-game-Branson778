@@ -88,7 +88,7 @@ public class MovingObjectManager implements ActionListener {
 	   platforms = GenerationSystem.createPlatforms();
 	   deathBlocks = GenerationSystem.createDeathBlocks();
 	   souls = GenerationSystem.createPowerSouls();
-	   dispensers = GenerationSystem.createDispensers();
+	  dispensers = GenerationSystem.createDispensers();
 	   baddies = GenerationSystem.createBaddies();
 		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
 	   platforms.add(new PlatformObject(-600, 450, 1000600, 199, "Tileset_2EDIT6FLOOR.png"));
@@ -199,7 +199,7 @@ public class MovingObjectManager implements ActionListener {
 		}
 	}
 	public void theTrueStory() {
-		JOptionPane.showMessageDialog(null, "You are the enslaver, the true villian. The slaves are mindless, but still try to take revenge. No one can control the eternal flame, no even you. Everyone thinks you are their tried savior and they follow orders and try to kill you. Run as long as possible to survive for more time. Time is all you need.");
+		JOptionPane.showMessageDialog(null, "You are the enslaver, the true villian. The slaves are mindless, but still try to take revenge. No one can control the eternal flame, no not even you. Everyone thinks you are their tried savior and they follow orders and try to kill you. Run as long as possible to survive for more time. Time is all you need.");
 		player2.theTrueStory();
 		for(int i = 0; i < deathBlocks.size(); i++) {
 		deathBlocks.get(i).needImage = true;
@@ -217,7 +217,7 @@ public class MovingObjectManager implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < dispensers.size(); i++) {
+		for (int i = 0; i < dispensers.size(); i++) { 
 			addArrow(dispensers.get(i).getArrow());
 		}
 	}

@@ -174,7 +174,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 					Clip clip = AudioSystem.getClip();
 					AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
 					clip.open(inputStream);
-					clip.start();
+					//clip.start();
+					clip.loop(clip.LOOP_CONTINUOUSLY);
 				} catch (Exception e) {
 					System.out.println("playSound error " + e.getMessage() + " for " + path);
 				}

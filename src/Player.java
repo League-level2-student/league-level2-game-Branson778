@@ -47,6 +47,8 @@ public class Player extends MovingObject {
 		g.setFont(earlyStageStaminaFont);
 		g.setColor(Color.YELLOW);
 		g.drawString(stamina + "", 27, 50);
+		g.setColor(Color.BLUE);
+		g.drawString(x + "", 27, 100);
 	}
 
 	public void walkLeft(boolean left) {

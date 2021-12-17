@@ -5,9 +5,9 @@ public class GenerationSystem {
 	public static Random gen1 = new Random();
  public static ArrayList<PlatformObject> createPlatforms() {
 	 ArrayList<PlatformObject> platforms = new ArrayList<PlatformObject>();
-	int amount = gen1.nextInt(1750)+1;
+	int amount = gen1.nextInt(650)+1;
 	 for(int i = 0; i < amount; i++ ) {
-		 int ranX = gen1.nextInt(90000)+201;
+		 int ranX = gen1.nextInt(15000)+201;
 		 int ranY = gen1.nextInt(211)+250;
 		 int ranWidth = gen1.nextInt(51)+25;
 		 int ranHeight = gen1.nextInt(71)+15;
@@ -18,9 +18,9 @@ public class GenerationSystem {
  }
   public static ArrayList<DeathBlock> createDeathBlocks() {
 	 ArrayList<DeathBlock> deathBlocks = new ArrayList<DeathBlock>();
-	int amount = gen1.nextInt(900)+1;
+	int amount = gen1.nextInt(390)+1;
 	 for(int i = 0; i < amount; i++ ) {
-		 int ranX = gen1.nextInt(90000)+201;
+		 int ranX = gen1.nextInt(15000)+201;
 		 int ranY = gen1.nextInt(315)+100;
 		 int ranWidth = gen1.nextInt(51)+25;
 		 int ranHeight = gen1.nextInt(71)+15;
@@ -31,9 +31,9 @@ public class GenerationSystem {
   }
   public static ArrayList<Baddie> createBaddies() {
 		 ArrayList<Baddie> baddies = new ArrayList<Baddie>();
-			int amount = gen1.nextInt(500)+1;
+			int amount = gen1.nextInt(240)+1;
 			 for(int i = 0; i < amount; i++ ) {
-				 int ranX = gen1.nextInt(90000)+201;
+				 int ranX = gen1.nextInt(15000)+201;
 				 int ranY = gen1.nextInt(141)+10;
 				 int ranWidth = gen1.nextInt(51)+25;
 				 int ranHeight = gen1.nextInt(71)+15;
@@ -47,7 +47,7 @@ public class GenerationSystem {
 				 else if(ranBoolDecide == 1) {
 					 sideMove = false;
 				 } 
-				 if(sideMove==true) {
+				 if(sideMove) {
 				 ranMovement = gen1.nextInt(5000)+ranX;
 				 baddie1 = new Baddie(ranX,ranY,ranWidth,ranHeight,ranX,ranMovement,sideMove);
 				 }
@@ -61,9 +61,10 @@ public class GenerationSystem {
   } 
   public static ArrayList<ArrowDispenser> createDispensers() {
 		 ArrayList<ArrowDispenser> dispensers = new ArrayList<ArrowDispenser>();
-			int amount = gen1.nextInt(20)+1;
+			int amount = gen1.nextInt(55)+1;
 			 for(int i = 0; i < amount; i++ ) {
-				 int ranX = gen1.nextInt(90000)+201;
+					// TODO Auto-generated method stub
+				 int ranX = gen1.nextInt(15000)+7001;
 				 int ranY = gen1.nextInt(201)+180;
 				 int ranBoolDecide = gen1.nextInt(2);
 				 boolean isFacingRight = false;
@@ -80,9 +81,9 @@ public class GenerationSystem {
   }
   public static ArrayList<PowerSoul> createPowerSouls() {
 		 ArrayList<PowerSoul> souls = new ArrayList<PowerSoul>();
-			int amount = gen1.nextInt(360)+1;
+			int amount = gen1.nextInt(290)+1;
 			 for(int i = 0; i < amount; i++ ) {
-				 int ranX = gen1.nextInt(150000)+201;
+				 int ranX = gen1.nextInt(16000)+201;
 				 int ranY = gen1.nextInt(315)+100;
 				 PowerSoul soul1 = new PowerSoul(ranX,ranY,39,39);
 				 souls.add(soul1);
