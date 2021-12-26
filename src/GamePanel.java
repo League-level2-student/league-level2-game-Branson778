@@ -33,7 +33,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
-	boolean godMode = true;
+	boolean godMode = false;
+	boolean godModeBan = false;
 
 	GamePanel() {
 		frameDraw = new Timer(1000 / 63, this);
@@ -83,6 +84,32 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			// mobm.theTrueStory = true;
 			mobm.theTrueStory();
+		}
+		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
+			if(godMode==false && godModeBan == false) {
+			godMode = true;
+			JOptionPane.showMessageDialog(null, "Enjoy Godmode!");
+			}
+			else if (godMode==true && godModeBan == false) {
+				godMode = false;
+				JOptionPane.showMessageDialog(null, "Don't Be Greedy. There Is No Super Godmode. You Are Banned From Godmode For This Session Of Gameplay!");
+				godModeBan = true;
+			}
+			else if (godModeBan == true) {
+				JOptionPane.showMessageDialog(null, "We Told You. You Are Banned From Godmode For This Session Of Gameplay! No Exceptions! Unless You Hack The Game, But Then Why Would You Use These Cheat Codes, Just Set The Values In The Game Code!");
+			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DIVIDE) {
+			if(godModeBan == false) {
+				JOptionPane.showMessageDialog(null, "You Found A Secert. It Could Be Useful Later.");
+			}
+			else if(godModeBan== true) {
+				JOptionPane.showMessageDialog(null, "You Found The Exception That Works Every Time. You Can Use This Button To Unban Godmode Any Time You Are Banned. Now, DON'T BE GREEDY!");
+			godModeBan=false;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "If You Are Seeing This You Somehow Broke The Game. Hats Off To You.");
+			}
 		}
 	}
 

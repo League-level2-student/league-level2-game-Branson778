@@ -23,6 +23,7 @@ public class Player extends MovingObject {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	public boolean isDucking = false;
+	public double score = x/200;
 
 	Player(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -45,10 +46,10 @@ public class Player extends MovingObject {
 			g.fillRect(x, y, width, height);
 		}
 		g.setFont(earlyStageStaminaFont);
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.RED);
 		g.drawString(stamina + "", 27, 50);
-		g.setColor(Color.BLUE);
-		g.drawString(x + "", 27, 100);
+		g.setColor(Color.GREEN);
+		g.drawString(score + "", 27, 100);
 	}
 
 	public void walkLeft(boolean left) {
@@ -139,6 +140,7 @@ public class Player extends MovingObject {
 				stamina += 0.5;
 			}
 		}
+		score = x/200.0;
 		if (isDucking == true) {
 			speed -= 2;
 		}

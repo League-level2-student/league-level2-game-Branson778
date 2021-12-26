@@ -83,15 +83,18 @@ public class MovingObjectManager implements ActionListener {
 		baddies.add(new Baddie(650, 150, 50, 50, 150, 400, false));
 		souls.add(new PowerSoul(204, 260, 39, 39));
 	}
+	void generateObj() {
+		 arrowFire.start();
+		   platforms = GenerationSystem.createPlatforms();
+		   deathBlocks = GenerationSystem.createDeathBlocks();
+		   souls = GenerationSystem.createPowerSouls();
+		  dispensers = GenerationSystem.createDispensers();
+		   baddies = GenerationSystem.createBaddies();
+			platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
+		   platforms.add(new PlatformObject(-600, 450, 1000600, 199, "Tileset_2EDIT6FLOOR.png"));
+	}
    void startObjects() {
-	   arrowFire.start();
-	   platforms = GenerationSystem.createPlatforms();
-	   deathBlocks = GenerationSystem.createDeathBlocks();
-	   souls = GenerationSystem.createPowerSouls();
-	  dispensers = GenerationSystem.createDispensers();
-	   baddies = GenerationSystem.createBaddies();
-		platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
-	   platforms.add(new PlatformObject(-600, 450, 1000600, 199, "Tileset_2EDIT6FLOOR.png"));
+   generateObj();
    }
 	void addArrow(Arrow arrow) {
 		arrows.add(arrow);
@@ -218,7 +221,9 @@ public class MovingObjectManager implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < dispensers.size(); i++) { 
+			if(Math.abs(dispensers.get(i).x - player2.x) < 1801) {
 			addArrow(dispensers.get(i).getArrow());
+			}
 		}
 	}
 }
