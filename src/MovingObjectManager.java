@@ -67,6 +67,26 @@ public class MovingObjectManager implements ActionListener {
 		for (int i = 0; i < baddies.size(); i++) {
 			baddies.get(i).update();
 		}
+		if(Math.abs(150300+GenerationSystem.xDifference - player2.x) < 1) {
+			GenerationSystem.xDifference = GenerationSystem.xDifference + 150300;
+			//   platforms.addAll(GenerationSystem.createPlatforms());
+			//   deathBlocks.addAll(GenerationSystem.createDeathBlocks());
+			//   souls.addAll(GenerationSystem.createPowerSouls());
+			//  dispensers.addAll(GenerationSystem.createDispensers());
+			//  baddies.addAll(GenerationSystem.createBaddies());
+			platforms = new ArrayList<PlatformObject>();
+			deathBlocks = new ArrayList<DeathBlock>();
+			souls = new ArrayList<PowerSoul>();
+			dispensers = new ArrayList<ArrowDispenser>();
+			baddies = new ArrayList<Baddie>();
+			platforms = GenerationSystem.createPlatforms();
+			   deathBlocks = GenerationSystem.createDeathBlocks();
+			   souls = GenerationSystem.createPowerSouls();
+			  dispensers = GenerationSystem.createDispensers();
+			   baddies = GenerationSystem.createBaddies();
+				platforms.add(new PlatformObject(-600+GenerationSystem.xDifference, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
+			   platforms.add(new PlatformObject(-600+GenerationSystem.xDifference, 450, 1000600, 199, "Tileset_2EDIT6FLOOR.png"));
+		}
 	}
 
 	void startObjectsDebug() {

@@ -3,11 +3,12 @@ import java.util.Random;
 
 public class GenerationSystem {
 	public static Random gen1 = new Random();
+	public static int xDifference = 0;
  public static ArrayList<PlatformObject> createPlatforms() {
 	 ArrayList<PlatformObject> platforms = new ArrayList<PlatformObject>();
 	int amount = gen1.nextInt(6100)+1;
 	 for(int i = 0; i < amount; i++ ) {
-		 int ranX = gen1.nextInt(150000)+201;
+		 int ranX = gen1.nextInt(150000)+201+xDifference;
 		 int ranY = gen1.nextInt(211)+250;
 		 int ranWidth = gen1.nextInt(51)+25;
 		 int ranHeight = gen1.nextInt(71)+15;
@@ -20,7 +21,7 @@ public class GenerationSystem {
 	 ArrayList<DeathBlock> deathBlocks = new ArrayList<DeathBlock>();
 	int amount = gen1.nextInt(3400)+1;
 	 for(int i = 0; i < amount; i++ ) {
-		 int ranX = gen1.nextInt(150000)+201;
+		 int ranX = gen1.nextInt(150000)+201+xDifference;
 		 int ranY = gen1.nextInt(315)+100;
 		 int ranWidth = gen1.nextInt(51)+25;
 		 int ranHeight = gen1.nextInt(71)+15;
@@ -33,7 +34,7 @@ public class GenerationSystem {
 		 ArrayList<Baddie> baddies = new ArrayList<Baddie>();
 			int amount = gen1.nextInt(2200)+1;
 			 for(int i = 0; i < amount; i++ ) {
-				 int ranX = gen1.nextInt(150000)+201;
+				 int ranX = gen1.nextInt(150000)+201+xDifference;
 				 int ranY = gen1.nextInt(141)+10;
 				 int ranWidth = gen1.nextInt(51)+25;
 				 int ranHeight = gen1.nextInt(71)+15;
@@ -64,7 +65,7 @@ public class GenerationSystem {
 			int amount = gen1.nextInt(900)+1;
 			 for(int i = 0; i < amount; i++ ) {
 					// TODO Auto-generated method stub
-				 int ranX = gen1.nextInt(150000)+201;
+				 int ranX = gen1.nextInt(150000)+201+xDifference;
 				 int ranY = gen1.nextInt(201)+180;
 				 int ranBoolDecide = gen1.nextInt(2);
 				 boolean isFacingRight = false;
@@ -83,7 +84,7 @@ public class GenerationSystem {
 		 ArrayList<PowerSoul> souls = new ArrayList<PowerSoul>();
 			int amount = gen1.nextInt(2900)+1;
 			 for(int i = 0; i < amount; i++ ) {
-				 int ranX = gen1.nextInt(160000)+201;
+				 int ranX = gen1.nextInt(160000)+201+xDifference;
 				 int ranY = gen1.nextInt(315)+100;
 				 PowerSoul soul1 = new PowerSoul(ranX,ranY,39,39);
 				 souls.add(soul1);

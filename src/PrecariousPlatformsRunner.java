@@ -3,6 +3,7 @@ import javax.swing.JOptionPane;
 
 public class PrecariousPlatformsRunner {
 	// Now an infinite runner instead of an infinite platformer.
+	//TODO Make Screenscroll monster
 	JFrame frame = new JFrame();
 	public static final int WIDTH = 800;
 	public static final int LENGTH = 600;

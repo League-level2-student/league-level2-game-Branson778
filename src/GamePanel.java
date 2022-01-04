@@ -111,6 +111,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				JOptionPane.showMessageDialog(null, "If You Are Seeing This You Somehow Broke The Game. Hats Off To You.");
 			}
 		}
+		if (e.getKeyCode() == KeyEvent.VK_ADD) {
+			player.x += 150000;
+			//debug for generation remove before finishing
+		}
+		if (e.getKeyCode() == KeyEvent.VK_SUBTRACT) {
+			player.x += 105;
+			//became easter egg
+		}
+		if (e.getKeyCode() == KeyEvent.VK_MULTIPLY) {
+			player.y -= 75;
+			//became easter egg
+		}
 	}
 
 	void drawBackground(Graphics f) {
