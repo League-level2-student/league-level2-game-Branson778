@@ -16,6 +16,7 @@ public class MovingObjectManager implements ActionListener {
 	static ArrayList<DeathBlock> deathBlocks = new ArrayList<DeathBlock>();
 	static ArrayList<Baddie> baddies = new ArrayList<Baddie>();
 	static ArrayList<PowerSoul> souls = new ArrayList<PowerSoul>();
+	static ArrayList<Portal> portal = new ArrayList<Portal>();
 	boolean theTrueStory = false;
 	Timer arrowFire = new Timer(1000, this);
 	int debugInt;
@@ -38,6 +39,9 @@ public class MovingObjectManager implements ActionListener {
 		}
 		for (int i = 0; i < platforms.size(); i++) {
 			platforms.get(i).draw(h);
+		}
+		for (int i = 0; i < portal.size(); i++) {
+			portal.get(i).draw(h);
 		}
 		player2.draw(h);
 		// h.setColor(Color.RED);
@@ -79,6 +83,7 @@ public class MovingObjectManager implements ActionListener {
 			souls = new ArrayList<PowerSoul>();
 			dispensers = new ArrayList<ArrowDispenser>();
 			baddies = new ArrayList<Baddie>();
+			portal = new ArrayList<Portal>();
 			platforms = GenerationSystem.createPlatforms();
 			   deathBlocks = GenerationSystem.createDeathBlocks();
 			   souls = GenerationSystem.createPowerSouls();
@@ -86,6 +91,7 @@ public class MovingObjectManager implements ActionListener {
 			   baddies = GenerationSystem.createBaddies();
 				platforms.add(new PlatformObject(-600+GenerationSystem.xDifference, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
 			   platforms.add(new PlatformObject(-600+GenerationSystem.xDifference, 450, 1000600, 199, "Tileset_2EDIT6FLOOR.png"));
+			   portal.add(new Portal(150300+GenerationSystem.xDifference, 145, 150, 311));
 		}
 	}
 
@@ -112,6 +118,7 @@ public class MovingObjectManager implements ActionListener {
 		   baddies = GenerationSystem.createBaddies();
 			platforms.add(new PlatformObject(-600, 0, 600, PrecariousPlatformsRunner.LENGTH, "Tileset_2EDIT6ROCK.png"));
 		   platforms.add(new PlatformObject(-600, 450, 1000600, 199, "Tileset_2EDIT6FLOOR.png"));
+		   portal.add(new Portal(150300, 145, 150, 311));
 	}
    void startObjects() {
    generateObj();
