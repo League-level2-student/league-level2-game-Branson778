@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int MENU = 0;
 	final int GAME = 1;
 	final int END = 2;
-	int currentState = GAME;
+	int currentState = MENU;
 
 	GamePanel() {
 		frameDraw = new Timer(1000 / 63, this);
