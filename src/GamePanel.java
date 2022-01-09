@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
@@ -25,8 +26,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int backgroundX = 0;
 	int backgroundY = 0;
 	boolean theTrueStory = false;
-	Background gameBackground = new Background(backgroundX, backgroundY - 80, PrecariousPlatformsRunner.WIDTH,
-			PrecariousPlatformsRunner.LENGTH);
+	Background gameBackground = new Background(backgroundX, backgroundY - 80, PrecariousPlatformsRunner.WIDTH,PrecariousPlatformsRunner.LENGTH);
 //PlatformObject po = new PlatformObject(0, 450, 800, 199);
 //boolean ifJump = false;
 //int velocity = 26;
@@ -35,6 +35,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static boolean gotImage = false;
 	boolean godMode = false;
 	boolean godModeBan = false;
+	final int MENU = 0;
+	final int GAME = 1;
+	final int END = 2;
+	int currentState = GAME;
 
 	GamePanel() {
 		frameDraw = new Timer(1000 / 63, this);
@@ -48,62 +52,106 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	@Override
+	public void paintComponent(Graphics g) {
+		if (currentState == MENU) {
+			drawMenu(g);
+		} else if (currentState == GAME) {
+			drawGame(g);
+		} else if (currentState == END) {
+			drawEnd(g);
+		}
+	}
+
+	public void drawMenu(Graphics g) {
+		stopGame();
+		g.setColor(Color.BLUE);
+		g.fillRect(0,0,PrecariousPlatformsRunner.WIDTH,PrecariousPlatformsRunner.LENGTH);
+	}
+
+	public void drawEnd(Graphics g) {
+		stopGame();
+		g.setColor(Color.BLACK);
+		g.fillRect(0,0,PrecariousPlatformsRunner.WIDTH,PrecariousPlatformsRunner.LENGTH);
+	}
+	
+	public void stopGame() {
+		mobm.arrowFire.stop();
+		mobm.platforms = new ArrayList<PlatformObject>();
+		mobm.deathBlocks = new ArrayList<DeathBlock>();
+		mobm.souls = new ArrayList<PowerSoul>();
+		mobm.dispensers = new ArrayList<ArrowDispenser>();
+		mobm.baddies = new ArrayList<Baddie>();
+		mobm.portal = new ArrayList<Portal>();
+	}
+
+	@Override
 
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_SPACE
-				|| e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_SPACE|| e.getKeyCode() == KeyEvent.VK_UP) {
 			// System.out.println("JUMP");
 			// mobm.player2.jump();
-			if (mobm.player2.isJumping == false) {
+			if (mobm.player2.isJumping == false&&currentState==GAME) {
 				mobm.player2.velocity = 26;
 				mobm.player2.isJumping = true;
 			}
+			else if (currentState==MENU||currentState==END) {
+				currentState=GAME;
+			}
 		}
-		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_CONTROL
-				|| e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_CONTROL|| e.getKeyCode() == KeyEvent.VK_DOWN) {
 			// System.out.println("DUCK");
+			if(currentState==GAME) {
 			mobm.player2.duck(true);
+			}
 			// mobm.player2.isDucking=true;
 			// mobm.player2.previousY=mobm.player2.y;
 			// mobm.player2.y+=25;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 			// System.out.println("MOVE LEFT");
+			if(currentState==GAME) {
 			mobm.player2.walkLeft(true);
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			// System.out.println("MOVE RIGHT");
+			if(currentState==GAME) {
 			mobm.player2.walkRight(true);
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SHIFT || e.getKeyCode() == KeyEvent.VK_E) {
 			// System.out.println("TOGGLE SPRINT ON");
 			// mobm.player2.speed=7;
+			if(currentState==GAME) {
 			mobm.player2.isSprinting = true;
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			// mobm.theTrueStory = true;
+			if(currentState==GAME) {
 			mobm.theTrueStory();
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
-			if(godMode==false && godModeBan == false) {
+			if(godMode==false && godModeBan == false&&currentState==GAME) {
 			godMode = true;
 			JOptionPane.showMessageDialog(null, "Enjoy Godmode!");
 			}
-			else if (godMode==true && godModeBan == false) {
+			else if (godMode==true && godModeBan == false&&currentState==GAME) {
 				godMode = false;
 				JOptionPane.showMessageDialog(null, "Don't Be Greedy. There Is No Super Godmode. You Are Banned From Godmode For This Session Of Gameplay!");
 				godModeBan = true;
 			}
-			else if (godModeBan == true) {
+			else if (godModeBan == true&&currentState==GAME) {
 				JOptionPane.showMessageDialog(null, "We Told You. You Are Banned From Godmode For This Session Of Gameplay! No Exceptions! Unless You Hack The Game, But Then Why Would You Use These Cheat Codes, Just Set The Values In The Game Code!");
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DIVIDE) {
-			if(godModeBan == false) {
+			if(godModeBan == false&&currentState==GAME) {
 				JOptionPane.showMessageDialog(null, "You Found A Secert. It Could Be Useful Later.");
 			}
-			else if(godModeBan== true) {
+			else if(godModeBan== true&&currentState==GAME) {
 				JOptionPane.showMessageDialog(null, "You Found The Exception That Works Every Time. You Can Use This Button To Unban Godmode Any Time You Are Banned. Now, DON'T BE GREEDY!");
 			godModeBan=false;
 			}
@@ -112,15 +160,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ADD) {
+			if(currentState==GAME) {
 			player.x += 150000;
+			}
 			//debug for generation remove before finishing
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SUBTRACT) {
+			if(currentState==GAME) {
 			player.x += 105;
+			}
 			//became easter egg
 		}
 		if (e.getKeyCode() == KeyEvent.VK_MULTIPLY) {
+			if(currentState==GAME) {
 			player.y -= 75;
+			}
 			//became easter egg
 		}
 	}
@@ -152,12 +206,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// po.update();
 		if (player.isActive == false && godMode == false) {
 			// System.out.println("player/dead");
+			currentState = END;
 		}
-	}
-
-	@Override
-	public void paintComponent(Graphics h) {
-		drawGame(h);
 	}
 
 	@Override
@@ -166,7 +216,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_CONTROL
 				|| e.getKeyCode() == KeyEvent.VK_DOWN) {
 			// System.out.println("DUCK RELSEASED");
+			if(currentState==GAME) {
 			mobm.player2.duck(false);
+			}
 			// mobm.player2.isDucking=false;
 			// unmobm.player2.y=mobm.player2.previousY;
 			// mobm.player2.targetHeight=50;
@@ -174,18 +226,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_SHIFT || e.getKeyCode() == KeyEvent.VK_E) {
 			// System.out.println("TOGGLE SPRINT OFF");
 			// mobm.player2.speed=4;
+			if(currentState==GAME) {
 			mobm.player2.isSprinting = false;
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 			// System.out.println("MOVE LEFT");
+			if(currentState==GAME) {
 			mobm.player2.walkLeft(false);
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			// System.out.println("MOVE RIGHT");
+			if(currentState==GAME) {
 			mobm.player2.walkRight(false);
+			}
 		}
-		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_SPACE
-				|| e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_SPACE|| e.getKeyCode() == KeyEvent.VK_UP) {
 			// System.out.println("JUMP RELEASE");
 			// mobm.player2.jump();
 			// mobm.player2.isJumping = false;
@@ -201,7 +258,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent frameUpdate) {
 		// TODO Auto-generated method stub
-		updateGame();
+		if (currentState == MENU) {
+			
+		} else if (currentState == GAME) {
+			updateGame();
+		} else if (currentState == END) {
+			
+		}
 		repaint();
 	}
 
@@ -215,6 +278,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 					clip.open(inputStream);
 					//clip.start();
 					clip.loop(clip.LOOP_CONTINUOUSLY);
+					while(currentState==GAME||currentState==MENU) {
+						continue;
+					}
+					clip.stop();
 				} catch (Exception e) {
 					System.out.println("playSound error " + e.getMessage() + " for " + path);
 				}
