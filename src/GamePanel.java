@@ -17,6 +17,7 @@ import javax.swing.JApplet;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.awt.Font;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	MovingObjectManager mobm = new MovingObjectManager();
@@ -39,6 +40,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME = 1;
 	final int END = 2;
 	int currentState = MENU;
+	Font overFont = new Font("Arial", Font.PLAIN, 75);
+	Font titleFont = new Font("Arial", Font.PLAIN, 45);
+	Font textFont = new Font("Arial", Font.PLAIN, 20);
+	Font smolFont = new Font("Arial", Font.PLAIN, 15);
 
 	GamePanel() {
 		frameDraw = new Timer(1000 / 63, this);
@@ -46,7 +51,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			loadImage("gameBackgroundTEST.png");
 		}
 		 playSound("jungleexcessive.wav");
-			mobm.startObjects();
+			//mobm.startObjects();
 		frameDraw.start();
 		// playSound("5325576581152768.wav");
 	}
@@ -66,12 +71,49 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		stopGame();
 		g.setColor(Color.BLUE);
 		g.fillRect(0,0,PrecariousPlatformsRunner.WIDTH,PrecariousPlatformsRunner.LENGTH);
+		g.setColor(Color.YELLOW);
+		g.setFont(titleFont);
+		g.drawString("Welcome to Precarious Platforms!", 53,90);
+		g.drawString("Backstory:", 290, 160);
+		g.setFont(smolFont);
+		g.drawString("You feel as your colors fade, someone is controlling the endless fire. Your memories start to slip away from you. ", 10, 185);
+		g.drawString("But, before fully being consumed, you see what happens to yours friends and family. They become slaves to a single", 10, 200);
+		g.drawString("being. Shocked you start running forgetting your past and only remember, free them all. You now burn in the colors of",10,215);
+		g.drawString("light searching for the slaver of your people. Running far enough will bring you there. But where in the eternal jungle, the", 10, 230);
+		g.drawString("temple of the endless fire is, is a mystery to you. Someone is controlling your people and you must stop them and", 10, 245);
+		g.drawString("show them this won’t happen again.", 10, 260);
+		g.setFont(titleFont);
+		g.drawString("Controls:", 290, 295);
+		g.setFont(smolFont);
+		g.drawString("W, Up Arrow, or Space to jump. A or Left Arrow to move left. D or Right Arrow to move right. Shift or E to sprint. S,", 20, 320);
+		g.drawString(" Control, or Down Arrow to crouch.", 270, 335);
+		g.drawString("Try to avoid arrows, red squares, and living rocks.", 223, 360);
+		g.setFont(textFont);
+		g.drawString("Secerts exist! Try to find them all!",234, 395 );
+		g.drawString("Press W, Up Arrow, or Space to start.", 216, 450);
+		g.drawString("Lag may occur when game is started.", 220, 515);
+	
 	}
 
 	public void drawEnd(Graphics g) {
 		stopGame();
 		g.setColor(Color.BLACK);
 		g.fillRect(0,0,PrecariousPlatformsRunner.WIDTH,PrecariousPlatformsRunner.LENGTH);
+		g.setColor(Color.RED);
+		g.setFont(overFont);
+		g.drawString("You Died!",234, 140);
+		g.setFont(textFont);
+		g.drawString("Remember to avoid arrows, red squares, and living rocks.", 150, 250);
+		g.drawString("Press W, Up Arrow, or Space to restart.", 216, 320);
+		g.drawString("Lag may occur when game is restarted.", 220, 390);
+		if(theTrueStory==true) {
+			g.setColor(Color.WHITE);
+			g.drawString("You found a secert! It came with some lore:", 195, 435);
+			g.setFont(smolFont);
+			g.drawString("You are the enslaver, the true villian. The slaves are mindless, but still try to take revenge. No one can control the ",10,450);
+			g.drawString("eternal flame, not even you. Everyone thinks you are their tried savior and they follow orders and try to kill you. ",10,465);
+			g.drawString("Run as long as possible to survive for more time. Time is all you need.",10,480);
+		}
 	}
 	
 	public void stopGame() {
@@ -82,6 +124,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		mobm.dispensers = new ArrayList<ArrowDispenser>();
 		mobm.baddies = new ArrayList<Baddie>();
 		mobm.portal = new ArrayList<Portal>();
+		mobm.screenscroll = new ArrayList<ScreenscrollMonster>();
+		player.x=50;
+		player.y=350;
+		player.isActive=true;
 	}
 
 	@Override
@@ -95,8 +141,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				mobm.player2.velocity = 26;
 				mobm.player2.isJumping = true;
 			}
-			else if (currentState==MENU||currentState==END) {
+			else if (currentState==MENU) {
 				currentState=GAME;
+				mobm.startObjects();
+			}
+			else if(currentState==END) {
+				currentState=GAME;
+				mobm.startObjects();
+				//System.out.println("Working");
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_CONTROL|| e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -131,6 +183,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			// mobm.theTrueStory = true;
 			if(currentState==GAME) {
 			mobm.theTrueStory();
+			theTrueStory=true;
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SLASH) {
@@ -207,6 +260,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (player.isActive == false && godMode == false) {
 			// System.out.println("player/dead");
 			currentState = END;
+			//System.out.println("DEATHTEST");
 		}
 	}
 

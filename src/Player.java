@@ -46,7 +46,7 @@ public class Player extends MovingObject {
 			g.fillRect(x, y, width, height);
 		}
 		g.setFont(earlyStageStaminaFont);
-		g.setColor(Color.RED);
+		g.setColor(Color.YELLOW);
 		g.drawString(stamina + "", 27, 50);
 		g.setColor(Color.GREEN);
 		g.drawString(score + "", 27, 100);
