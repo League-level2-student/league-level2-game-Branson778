@@ -103,6 +103,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(overFont);
 		g.drawString("You Died!",234, 140);
 		g.setFont(textFont);
+		g.drawString("Score: "+ player.score, 350, 190);
 		g.drawString("Remember to avoid arrows, red squares, and living rocks.", 150, 250);
 		g.drawString("Press W, Up Arrow, or Space to restart.", 216, 320);
 		g.drawString("Lag may occur when game is restarted.", 220, 390);
@@ -125,8 +126,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		mobm.baddies = new ArrayList<Baddie>();
 		mobm.portal = new ArrayList<Portal>();
 		mobm.screenscroll = new ArrayList<ScreenscrollMonster>();
-		player.x=50;
-		player.y=350;
 		player.isActive=true;
 	}
 
@@ -144,10 +143,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			else if (currentState==MENU) {
 				currentState=GAME;
 				mobm.startObjects();
+				player.x=50;
+				player.y=350;
 			}
 			else if(currentState==END) {
 				currentState=GAME;
 				mobm.startObjects();
+				player.x=50;
+				player.y=350;
 				//System.out.println("Working");
 			}
 		}
