@@ -89,7 +89,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString(" Control, or Down Arrow to crouch.", 270, 335);
 		g.drawString("Try to avoid arrows, red squares, and living rocks.", 223, 360);
 		g.setFont(textFont);
-		g.drawString("Secerts exist! Try to find them all!",234, 395 );
+		g.drawString("Secrets exist! Try to find them all!",234, 395 );
 		g.drawString("Press W, Up Arrow, or Space to start.", 216, 450);
 		g.drawString("Lag may occur when game is started.", 220, 515);
 	
