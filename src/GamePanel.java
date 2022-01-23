@@ -77,8 +77,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Backstory:", 290, 160);
 		g.setFont(smolFont);
 		g.drawString("You feel as your colors fade, someone is controlling the endless fire. Your memories start to slip away from you. ", 10, 185);
-		g.drawString("But, before fully being consumed, you see what happens to yours friends and family. They become slaves to a single", 10, 200);
-		g.drawString("being. Shocked you start running forgetting your past and only remember, free them all. You now burn in the colors of",10,215);
+		g.drawString("But, before fully being consumed, you see what happens to your friends and family. They become slaves to a single", 10, 200);
+		g.drawString("being. Shocked you start running, forgetting your past and only remember, free them all. You now burn in the colors of",10,215);
 		g.drawString("light searching for the slaver of your people. Running far enough will bring you there. But where in the eternal jungle, the", 10, 230);
 		g.drawString("temple of the endless fire is, is a mystery to you. Someone is controlling your people and you must stop them and", 10, 245);
 		g.drawString("show them this won’t happen again.", 10, 260);
